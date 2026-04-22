@@ -102,8 +102,9 @@ const productCatalog: Record<string, Product> = {
     name: "BPC-157",
     dosage: "10 mg",
     price: 49.99,
-    image: "",
-    shortDescription: "Body Protection Compound-157, a pentadecapeptide derived from human gastric juice with tissue-protective properties.",
+    image: "/bpc-157.png",
+    shortDescription:
+      "Body Protection Compound-157, a pentadecapeptide derived from human gastric juice with tissue-protective properties. It is also researched for soft-tissue healing, tendon and ligament support, gut-health pathways, and angiogenesis-related recovery signaling.",
     benefits: ["Tissue Repair", "Gut Health", "Recovery"],
     purity: "99%+",
     category: "recovery",
@@ -141,8 +142,9 @@ const productCatalog: Record<string, Product> = {
     name: "TB-500",
     dosage: "10 mg",
     price: 54.99,
-    image: "",
-    shortDescription: "Thymosin Beta-4 fragment, a naturally occurring peptide involved in tissue repair and cell migration.",
+    image: "/tb-500.png",
+    shortDescription:
+      "Thymosin Beta-4 fragment, a naturally occurring peptide involved in tissue repair and cell migration. It is studied to support injury recovery, inflammation control, angiogenesis, and muscle, tendon, and ligament repair pathways.",
     benefits: ["Muscle Repair", "Flexibility", "Recovery"],
     purity: "99%+",
     category: "recovery",
@@ -178,10 +180,11 @@ const productCatalog: Record<string, Product> = {
   "wolverine-10mg": {
     id: "wolverine-10mg",
     name: "Wolverine",
-    dosage: "10 mg",
-    price: 89.99,
+    dosage: "20 mg",
+    price: 250,
     image: "/wolverine.png",
-    shortDescription: "A synergistic blend of BPC-157 (5mg) and TB-500 (5mg) for comprehensive recovery support.",
+    shortDescription:
+      "A synergistic blend of BPC-157 (5mg) and TB-500 (5mg) for comprehensive recovery support. This stack is researched for faster injury recovery, tissue repair, inflammation reduction, and both local and systemic healing responses.",
     benefits: ["Tissue Repair", "Recovery", "Healing"],
     purity: "99%+",
     category: "recovery",
@@ -214,92 +217,14 @@ const productCatalog: Record<string, Product> = {
     ],
     relatedProducts: ["bpc-157-10mg", "tb-500-10mg", "cjc-1295-ipamorelin"],
   },
-  "cjc-1295-ipamorelin": {
-    id: "cjc-1295-ipamorelin",
-    name: "CJC-1295 / Ipamorelin",
-    dosage: "10 mg blend",
-    price: 79.99,
-    image: "",
-    shortDescription: "A powerful combination of growth hormone releasing hormone (GHRH) and growth hormone secretagogue for research.",
-    benefits: ["Growth Hormone", "Recovery", "Anti-Aging"],
-    purity: "99%+",
-    category: "longevity",
-    protocol: {
-      dosage: "100-300mcg of each, 1-3 times daily",
-      frequency: "Subcutaneous injection, typically before bed and/or morning",
-      intendedUse: "Research into growth hormone release, recovery, and aging",
-    },
-    safety: {
-      avoid: ["Those with active cancer or tumors", "Individuals with diabetes without monitoring"],
-      notes: "Best administered on empty stomach. May cause temporary tingling or flushing.",
-    },
-    detailedBenefits: [
-      {
-        title: "Growth Hormone Release",
-        description: "Stimulates natural GH production through complementary pathways.",
-      },
-      {
-        title: "Recovery Enhancement",
-        description: "Supports faster recovery from training and physical stress.",
-      },
-      {
-        title: "Body Composition",
-        description: "Research indicates improvements in lean mass and fat reduction.",
-      },
-      {
-        title: "Sleep Quality",
-        description: "May support deeper, more restorative sleep patterns.",
-      },
-    ],
-    relatedProducts: ["bpc-157-10mg", "tb-500-10mg", "aod-9604"],
-  },
-  "aod-9604": {
-    id: "aod-9604",
-    name: "AOD-9604",
-    dosage: "5 mg",
-    price: 44.99,
-    image: "",
-    shortDescription: "A modified fragment of human growth hormone (HGH 176-191) studied for its lipolytic properties.",
-    benefits: ["Fat Metabolism", "Cartilage Repair", "Weight Management"],
-    purity: "99%+",
-    category: "fat-loss",
-    protocol: {
-      dosage: "250-500mcg per day",
-      frequency: "Once daily subcutaneous injection, preferably morning on empty stomach",
-      intendedUse: "Research into fat metabolism and cartilage regeneration",
-    },
-    safety: {
-      avoid: ["Pregnant or nursing individuals", "Those with compromised liver function"],
-      notes: "Does not affect blood sugar or growth. Well-tolerated in research.",
-    },
-    detailedBenefits: [
-      {
-        title: "Targeted Fat Loss",
-        description: "Research suggests lipolytic effects without muscle loss.",
-      },
-      {
-        title: "No IGF-1 Increase",
-        description: "Does not stimulate IGF-1, avoiding associated concerns.",
-      },
-      {
-        title: "Cartilage Support",
-        description: "Studies indicate potential benefits for joint health.",
-      },
-      {
-        title: "Metabolic Benefits",
-        description: "May support healthy metabolism without affecting glucose.",
-      },
-    ],
-    relatedProducts: ["retatrutide-20mg", "cjc-1295-ipamorelin", "bpc-157-10mg"],
-  },
   "mots-c-10mg": {
     id: "mots-c-10mg",
     name: "MOTS-c",
-    dosage: "10 mg",
-    price: 129.99,
+    dosage: "30 mg",
+    price: 250,
     image: "/motsc.png",
     shortDescription:
-      "A mitochondrial-derived peptide studied for metabolic regulation, cellular energy signaling, and resilience.",
+      "A mitochondrial-derived peptide studied for metabolic regulation, cellular energy signaling, and resilience. MOTS-c is a 16-amino-acid mitochondrial peptide explored for fat-burning support, insulin sensitivity, oxidative-stress resistance, bone-metabolism signaling, and exercise-mimicking metabolic flexibility.",
     benefits: ["Mitochondrial Support", "Metabolic Health", "Endurance"],
     purity: "99%+",
     category: "longevity",
@@ -340,11 +265,11 @@ const productCatalog: Record<string, Product> = {
   "glow-10mg": {
     id: "glow-10mg",
     name: "GLOW",
-    dosage: "10 mg",
-    price: 99.99,
+    dosage: "70 mg",
+    price: 250,
     image: "/GLOW.png",
     shortDescription:
-      "A multi-pathway peptide blend researched for skin quality, cellular renewal, and cosmetic wellness support.",
+      "A multi-pathway peptide blend researched for skin quality, cellular renewal, and cosmetic wellness support. GLOW combines GHK-Cu, BPC-157, and TB-500 in research protocols focused on collagen support, tissue repair, and skin appearance.",
     benefits: ["Skin Support", "Cellular Renewal", "Radiance"],
     purity: "99%+",
     category: "longevity",
@@ -385,11 +310,11 @@ const productCatalog: Record<string, Product> = {
   "epithalon-10mg": {
     id: "epithalon-10mg",
     name: "Epithalon",
-    dosage: "10 mg",
-    price: 89.99,
+    dosage: "50 mg",
+    price: 280,
     image: "/epithalon.png",
     shortDescription:
-      "A synthetic tetrapeptide studied for cellular regulation, longevity pathways, and recovery-focused research protocols.",
+      "A synthetic tetrapeptide studied for cellular regulation, longevity pathways, and recovery-focused research protocols. Epithalon is also investigated for telomerase expression, melatonin regulation, immune support, and stress-resilience signaling.",
     benefits: ["Longevity Research", "Cellular Support", "Recovery"],
     purity: "99%+",
     category: "longevity",
@@ -431,10 +356,10 @@ const productCatalog: Record<string, Product> = {
     id: "tesamorelin-10mg",
     name: "TESAMORELIN",
     dosage: "10 mg",
-    price: 119.99,
+    price: 200,
     image: "/tesamorelin.png",
     shortDescription:
-      "A growth hormone-releasing peptide studied for metabolic signaling, body-composition support, and recovery-focused research.",
+      "A growth hormone-releasing peptide studied for metabolic signaling, body-composition support, and recovery-focused research. Tesamorelin is a synthetic GHRH analog researched for natural growth-hormone stimulation and visceral-fat reduction pathways.",
     benefits: ["Metabolic Research", "Body Composition", "Cellular Support"],
     purity: "99%+",
     category: "longevity",
@@ -479,7 +404,7 @@ const productCatalog: Record<string, Product> = {
     price: 109.99,
     image: "/ss-31.png",
     shortDescription:
-      "A mitochondria-targeted peptide researched for cellular energy performance, oxidative-stress signaling, and recovery support.",
+      "A mitochondria-targeted peptide researched for cellular energy performance, oxidative-stress signaling, and recovery support. SS-31 (Elamipretide) is explored as a mitochondrial antioxidant linked to ATP-support and oxidative-stress reduction pathways.",
     benefits: ["Mitochondrial Support", "Cellular Energy", "Recovery"],
     purity: "99%+",
     category: "longevity",
@@ -521,10 +446,10 @@ const productCatalog: Record<string, Product> = {
     id: "thymosin-alpha-10mg",
     name: "Thymosin-Alpha",
     dosage: "10 mg",
-    price: 99.99,
+    price: 250,
     image: "/thymosin-alpha.png",
     shortDescription:
-      "A thymic peptide analog studied for immune-system signaling, recovery pathways, and cellular regulation.",
+      "A thymic peptide analog studied for immune-system signaling, recovery pathways, and cellular regulation. Thymosin-Alpha is a 28-amino-acid thymus-derived peptide investigated for immune modulation, infection-response support, angiogenesis, wound-healing dynamics, and inflammation control.",
     benefits: ["Immune Research", "Recovery", "Cellular Support"],
     purity: "99%+",
     category: "recovery",
@@ -565,11 +490,11 @@ const productCatalog: Record<string, Product> = {
   "nad-plus-10mg": {
     id: "nad-plus-10mg",
     name: "NAD+",
-    dosage: "10 mg",
-    price: 139.99,
+    dosage: "1000 mg",
+    price: 300,
     image: "/nad-plus.png",
     shortDescription:
-      "A central metabolic coenzyme studied for cellular energy turnover, redox balance, and healthy-aging pathways.",
+      "A central metabolic coenzyme studied for cellular energy turnover, redox balance, and healthy-aging pathways. NAD+ is essential in cellular ATP production, DNA-repair systems, and mitochondrial function, and is researched for age-related metabolic decline and chronic-inflammation resilience.",
     benefits: ["Cellular Energy", "Longevity Research", "Metabolic Support"],
     purity: "99%+",
     category: "longevity",
@@ -611,10 +536,10 @@ const productCatalog: Record<string, Product> = {
     id: "melanotan-2-10mg",
     name: "Melanotan 2",
     dosage: "10 mg",
-    price: 89.99,
+    price: 100,
     image: "/melanotan-2.png",
     shortDescription:
-      "A melanocortin-pathway peptide researched for receptor signaling, pigmentation studies, and cellular response analysis.",
+      "A melanocortin-pathway peptide researched for receptor signaling, pigmentation studies, and cellular response analysis. Melanotan 2 is often researched for melanin-production pathways associated with tanning response.",
     benefits: ["Peptide Research", "Skin Pathways", "Cellular Study"],
     purity: "99%+",
     category: "longevity",
@@ -655,11 +580,11 @@ const productCatalog: Record<string, Product> = {
   "ghk-cu-10mg": {
     id: "ghk-cu-10mg",
     name: "GHK-CU",
-    dosage: "10 mg",
-    price: 119.99,
+    dosage: "50 mg",
+    price: 100,
     image: "/ghk-cu.png",
     shortDescription:
-      "A copper-peptide complex studied for tissue signaling, skin-related pathways, and cellular renewal support.",
+      "A copper-peptide complex studied for tissue signaling, skin-related pathways, and cellular renewal support. GHK-Cu is a naturally occurring copper tripeptide explored for collagen support, skin appearance, antioxidant signaling, anti-inflammatory effects, and hair-follicle research.",
     benefits: ["Skin Research", "Cellular Renewal", "Tissue Support"],
     purity: "99%+",
     category: "longevity",
@@ -696,6 +621,46 @@ const productCatalog: Record<string, Product> = {
       },
     ],
     relatedProducts: ["glow-10mg", "melanotan-2-10mg", "thymosin-alpha-10mg"],
+  },
+  "bacteriostatic-water": {
+    id: "bacteriostatic-water",
+    name: "Bacteriostatic Water",
+    dosage: "3 ml / 10 ml",
+    price: 10,
+    image: "/bacteriostatic-water.png",
+    shortDescription:
+      "Sterile bacteriostatic water for peptide reconstitution in controlled research protocols.",
+    benefits: ["Reconstitution", "Lab Support", "Sterile Handling"],
+    purity: "Sterile",
+    category: "recovery",
+    protocol: {
+      dosage: "As required by protocol",
+      frequency: "Use only during peptide reconstitution",
+      intendedUse: "Laboratory peptide preparation and dilution workflows",
+    },
+    safety: {
+      avoid: ["Non-sterile handling environments", "Use outside intended research handling practices"],
+      notes: "Use sterile technique and follow laboratory handling standards.",
+    },
+    detailedBenefits: [
+      {
+        title: "Sterile Reconstitution Support",
+        description: "Used to dissolve lyophilized peptides under controlled lab conditions.",
+      },
+      {
+        title: "Protocol Consistency",
+        description: "Helps maintain standardized preparation procedures across research cycles.",
+      },
+      {
+        title: "Flexible Volume Options",
+        description: "Available in 3 ml and 10 ml formats for different reconstitution needs.",
+      },
+      {
+        title: "Lab Workflow Utility",
+        description: "Supports clean and repeatable handling in peptide research setups.",
+      },
+    ],
+    relatedProducts: ["retatrutide-20mg", "wolverine-10mg", "tb-500-10mg"],
   },
 }
 

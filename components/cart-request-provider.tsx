@@ -89,7 +89,7 @@ export function CartRequestProvider({ children }: { children: ReactNode }) {
       <Sheet open={open} onOpenChange={handleOpenChange}>
         <SheetContent
           side="right"
-          className="flex w-full max-w-[min(100vw-1rem,26rem)] flex-col gap-0 border-l border-gray-200/90 bg-[#FAFAFA] p-0 shadow-2xl sm:max-w-md"
+          className="flex w-[min(100vw-3.5rem,24rem)] max-w-none flex-col gap-0 border-l border-gray-200/90 bg-[#FAFAFA] p-0 shadow-2xl sm:w-full sm:max-w-md"
         >
           <div className="relative overflow-hidden border-b border-[#14B8A6]/15 bg-gradient-to-br from-[#14B8A6] via-[#12a89a] to-[#0d9488] px-6 pb-8 pt-10 text-white">
             <div

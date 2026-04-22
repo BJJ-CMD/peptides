@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useMemo, useState } from "react"
+import { type ReactNode, useCallback, useEffect, useMemo, useState } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
@@ -9,14 +9,6 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet"
 import { ProductImagePlaceholder, productHasCatalogImage } from "@/components/product-image-placeholder"
 import { formatAzn } from "@/lib/currency"
 import { productMatchesSearchQuery, suggestPeptidesForQuery } from "@/lib/peptide-search"
@@ -196,37 +188,20 @@ export function ShopPeptidesView({ products }: Props) {
 
             <div className="flex shrink-0 gap-2 sm:justify-end">
               <div className="lg:hidden">
-                <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-                  <SheetTrigger asChild>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      className="h-11 min-w-[110px] rounded-xl border-gray-200 bg-white shadow-sm hover:border-[#14B8A6]/40 hover:bg-[#14B8A6]/5"
-                    >
-                      <SlidersHorizontal className="mr-2 h-4 w-4 text-[#14B8A6]" />
-                      Filters
-                      {selected.size > 0 ? (
-                        <span className="ml-1.5 rounded-full bg-[#14B8A6] px-2 py-0.5 text-[11px] font-semibold text-white">
-                          {selected.size}
-                        </span>
-                      ) : null}
-                    </Button>
-                  </SheetTrigger>
-                  <SheetContent side="bottom" className="max-h-[88vh] overflow-y-auto rounded-t-2xl border-gray-200 px-4 pb-8 pt-2">
-                    <SheetHeader className="text-left">
-                      <SheetTitle className="text-lg font-semibold">Filters</SheetTitle>
-                      <SheetDescription className="text-sm text-muted-foreground">
-                        Select one or more categories. Products match if they fit any selected goal.
-                      </SheetDescription>
-                    </SheetHeader>
-                    <div className="mt-5 space-y-4">
-                      {filterCheckboxList("sheet")}
-                      <Button type="button" variant="outline" className="w-full rounded-xl border-dashed" onClick={clearCategoriesOnly}>
-                        Clear category filters
-                      </Button>
-                    </div>
-                  </SheetContent>
-                </Sheet>
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="h-11 min-w-[110px] rounded-xl border-gray-200 bg-white shadow-sm hover:border-[#14B8A6]/40 hover:bg-[#14B8A6]/5"
+                  onClick={() => setSheetOpen(true)}
+                >
+                  <SlidersHorizontal className="mr-2 h-4 w-4 text-[#14B8A6]" />
+                  Filters
+                  {selected.size > 0 ? (
+                    <span className="ml-1.5 rounded-full bg-[#14B8A6] px-2 py-0.5 text-[11px] font-semibold text-white">
+                      {selected.size}
+                    </span>
+                  ) : null}
+                </Button>
               </div>
 
               <Button
@@ -276,6 +251,52 @@ export function ShopPeptidesView({ products }: Props) {
           )}
         </div>
       </div>
+      <MobileFiltersPanel open={sheetOpen} onClose={() => setSheetOpen(false)} onClear={clearCategoriesOnly}>
+        {filterCheckboxList("sheet")}
+      </MobileFiltersPanel>
+    </div>
+  )
+}
+
+function MobileFiltersPanel({
+  open,
+  onClose,
+  children,
+  onClear,
+}: {
+  open: boolean
+  onClose: () => void
+  children: ReactNode
+  onClear: () => void
+}) {
+  if (!open) return null
+
+  return (
+    <div className="fixed inset-0 z-[120] lg:hidden" aria-modal="true" role="dialog" aria-label="Filters panel">
+      <button
+        type="button"
+        aria-label="Close filters"
+        className="absolute inset-0 bg-black/40"
+        onClick={onClose}
+      />
+      <div className="absolute inset-x-0 bottom-0 max-h-[88vh] overflow-y-auto rounded-t-2xl border-t border-gray-200 bg-white px-4 pb-8 pt-4 shadow-2xl">
+        <div className="mb-3 h-1.5 w-12 rounded-full bg-gray-200 mx-auto" />
+        <div className="text-left">
+          <h2 className="text-lg font-semibold">Filters</h2>
+          <p className="text-sm text-muted-foreground">
+            Select one or more categories. Products match if they fit any selected goal.
+          </p>
+        </div>
+        <div className="mt-5 space-y-4">
+          {children}
+          <Button type="button" variant="outline" className="w-full rounded-xl border-dashed" onClick={onClear}>
+            Clear category filters
+          </Button>
+          <Button type="button" className="w-full rounded-xl bg-[#14B8A6] hover:bg-[#0f9f91]" onClick={onClose}>
+            Apply filters
+          </Button>
+        </div>
+      </div>
     </div>
   )
 }
@@ -312,6 +333,7 @@ function ShopProductCard({ product }: { product: ShopPeptideListing }) {
             {product.name}
           </Link>
         </h2>
+        <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500">{product.dosage}</p>
         <p className="text-base font-bold tabular-nums text-slate-900 sm:text-lg">{formatAzn(product.price)}</p>
         <Button
           asChild

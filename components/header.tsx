@@ -11,12 +11,10 @@ import {
   Menu,
   Package,
   Search,
-  ShoppingCart,
   User,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import { BrandLogo } from "@/components/brand-logo"
-import { useCartRequest } from "@/components/cart-request-provider"
 import { HeaderSearchSheet } from "@/components/header-search-sheet"
 import { Button } from "@/components/ui/button"
 import {
@@ -39,7 +37,6 @@ export function Header() {
   const [searchOpen, setSearchOpen] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
-  const { openCart } = useCartRequest()
   const navDebug = process.env.NODE_ENV !== "production"
 
   const openSearchSheet = () => {
@@ -93,16 +90,6 @@ export function Header() {
               <span className="sr-only">Account</span>
             </Link>
           </Button>
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            className="text-muted-foreground hover:text-[#14B8A6]"
-            onClick={() => openCart()}
-          >
-            <ShoppingCart className="h-5 w-5" />
-            <span className="sr-only">Request order help</span>
-          </Button>
         </div>
 
         {/* Mobile Actions */}
@@ -132,21 +119,6 @@ export function Header() {
             <span>
               <User className="h-4 w-4" />
               <span className="sr-only">Account</span>
-            </span>
-          </Button>
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            className="h-11 w-11 rounded-lg text-muted-foreground hover:text-[#14B8A6]"
-            onClick={() => {
-              if (navDebug) console.info("[mobile-nav] cart tap")
-              openCart()
-            }}
-          >
-            <span>
-              <ShoppingCart className="h-4 w-4" />
-              <span className="sr-only">Request order help</span>
             </span>
           </Button>
           <Sheet

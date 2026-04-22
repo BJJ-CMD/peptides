@@ -1,34 +1,39 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Instagram, Phone, Send } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Contact Us",
-  description: "Reach Pure Amino Peptides via Telegram, WhatsApp, or Instagram.",
+  description: "Reach Pure Amino Peptides via WhatsApp.",
 }
 
 const channels = [
   {
-    title: "Telegram",
-    description: "Message us directly for fast support",
-    placeholder: "@yourhandle",
-    buttonLabel: "Open Chat",
-    icon: Send,
-  },
-  {
     title: "WhatsApp",
     description: "Text or call us anytime",
-    placeholder: "+000 000 0000",
-    buttonLabel: "Contact",
+    placeholder: "+7 777 324 4837",
+    buttonLabel: "Contact on WhatsApp",
+    href: "https://wa.me/77773244837",
     icon: Phone,
+    available: true,
+  },
+  {
+    title: "Telegram",
+    description: "Coming soon",
+    placeholder: "Coming soon",
+    buttonLabel: "Coming soon",
+    icon: Send,
+    available: false,
   },
   {
     title: "Instagram",
-    description: "Stay updated and message us",
-    placeholder: "@yourbrand",
-    buttonLabel: "View Profile",
+    description: "Coming soon",
+    placeholder: "Coming soon",
+    buttonLabel: "Coming soon",
     icon: Instagram,
+    available: false,
   },
 ] as const
 
@@ -59,12 +64,25 @@ export default function ContactPage() {
                   <p className="mt-4 font-mono text-sm font-medium tracking-tight text-slate-700 sm:text-base">
                     {channel.placeholder}
                   </p>
-                  <Button
-                    type="button"
-                    className="mt-6 h-12 w-full rounded-xl bg-[#14B8A6] text-base font-medium text-white shadow-sm transition-colors hover:bg-[#0f9f91] sm:h-11"
-                  >
-                    {channel.buttonLabel}
-                  </Button>
+                  {channel.available ? (
+                    <Button
+                      asChild
+                      type="button"
+                      className="mt-6 h-12 w-full rounded-xl bg-[#14B8A6] text-base font-medium text-white shadow-sm transition-colors hover:bg-[#0f9f91] sm:h-11"
+                    >
+                      <Link href={channel.href} target="_blank" rel="noopener noreferrer">
+                        {channel.buttonLabel}
+                      </Link>
+                    </Button>
+                  ) : (
+                    <Button
+                      type="button"
+                      disabled
+                      className="mt-6 h-12 w-full rounded-xl bg-slate-200 text-base font-medium text-slate-500 shadow-none hover:bg-slate-200 sm:h-11"
+                    >
+                      {channel.buttonLabel}
+                    </Button>
+                  )}
                 </article>
               )
             })}

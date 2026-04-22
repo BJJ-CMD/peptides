@@ -1,7 +1,6 @@
 "use client"
 
 import type { ComponentProps } from "react"
-import { useCartRequest } from "@/components/cart-request-provider"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -9,16 +8,31 @@ type Props = Omit<ComponentProps<typeof Button>, "onClick" | "type"> & {
   productLabel: string
 }
 
-export function AddToCartRequestButton({ productLabel, className, children = "Add to Cart", ...rest }: Props) {
-  const { openCart } = useCartRequest()
+const WHATSAPP_NUMBER = "77773244837"
+
+function buildWhatsappUrl(productLabel: string): string {
+  const text = `Hello, I’m interested in this peptide:\n\n${productLabel}\n\nCan you share availability and details?`
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`
+}
+
+export function AddToCartRequestButton({ productLabel, className, children = "Send Request", ...rest }: Props) {
+  const href = buildWhatsappUrl(productLabel)
+
   return (
-    <Button
-      type="button"
-      className={cn(className)}
-      {...rest}
-      onClick={() => openCart({ productLabel })}
-    >
-      {children}
-    </Button>
+    <div className="flex flex-col gap-1.5">
+      <Button
+        type="button"
+        className={cn("bg-[#14B8A6] text-white shadow-sm hover:bg-[#0f9f91]", className)}
+        {...rest}
+        onClick={() => {
+          window.open(href, "_blank", "noopener,noreferrer")
+        }}
+      >
+        {children}
+      </Button>
+      <p className="text-center text-[11px] leading-tight text-slate-500">
+        You&apos;ll be redirected to WhatsApp to complete your request
+      </p>
+    </div>
   )
 }

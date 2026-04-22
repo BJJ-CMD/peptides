@@ -198,7 +198,7 @@ export function FeaturedProductsSection() {
                     size="sm"
                     className="h-12 w-full px-6 text-base opacity-100 transition-opacity sm:h-9 sm:w-auto sm:px-3 sm:text-sm sm:opacity-0 sm:group-hover:opacity-100 lg:h-11 lg:w-full lg:px-4 lg:text-sm lg:opacity-100 lg:shadow-sm"
                   >
-                    Add to Cart
+                    Send Request
                   </AddToCartRequestButton>
                 </div>
               </div>

@@ -27,8 +27,6 @@ const SHOP_CATEGORY_BY_PRODUCT_ID: Record<string, ShopFilterId[]> = {
   "bpc-157-10mg": ["performance", "general-health"],
   "tb-500-10mg": ["performance", "muscle"],
   "wolverine-10mg": ["performance", "general-health"],
-  "cjc-1295-ipamorelin": ["muscle", "anti-aging", "performance"],
-  "aod-9604": ["weight-loss", "general-health"],
   "mots-c-10mg": ["anti-aging", "performance"],
   "glow-10mg": ["anti-aging", "general-health"],
   "epithalon-10mg": ["anti-aging", "general-health"],
@@ -38,6 +36,7 @@ const SHOP_CATEGORY_BY_PRODUCT_ID: Record<string, ShopFilterId[]> = {
   "nad-plus-10mg": ["anti-aging", "cognitive", "performance"],
   "melanotan-2-10mg": ["general-health"],
   "ghk-cu-10mg": ["anti-aging", "general-health"],
+  "bacteriostatic-water": ["general-health"],
 }
 
 export type ShopPeptideListing = Product & { shopCategories: ShopFilterId[] }
