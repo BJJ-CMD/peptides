@@ -10,7 +10,7 @@ const products = [
   {
     id: "retatrutide-20mg",
     name: "Retatrutide",
-    dosage: "10 mg / 20 mg",
+    dosage: "10 mg / 20 mg / 30 mg",
     price: 400,
     image: "/retatrutide.png",
     benefits: ["GLP-1 / GIP / Glucagon", "Fat Loss", "Appetite Control"],
@@ -18,24 +18,24 @@ const products = [
   {
     id: "mots-c-10mg",
     name: "MOTS-c",
-    dosage: "10 mg",
-    price: 129.99,
+    dosage: "30 mg",
+    price: 250,
     image: "/motsc.png",
     benefits: ["Mitochondrial Support", "Metabolic Health", "Endurance"],
   },
   {
     id: "glow-10mg",
     name: "GLOW",
-    dosage: "10 mg",
-    price: 99.99,
+    dosage: "70 mg",
+    price: 250,
     image: "/GLOW.png",
     benefits: ["Skin Support", "Cellular Renewal", "Radiance"],
   },
   {
     id: "epithalon-10mg",
     name: "Epithalon",
-    dosage: "10 mg",
-    price: 89.99,
+    dosage: "50 mg",
+    price: 280,
     image: "/epithalon.png",
     benefits: ["Longevity Research", "Cellular Support", "Recovery"],
   },
@@ -43,15 +43,15 @@ const products = [
     id: "tesamorelin-10mg",
     name: "TESAMORELIN",
     dosage: "10 mg",
-    price: 119.99,
+    price: 200,
     image: "/tesamorelin.png",
     benefits: ["Metabolic Research", "Body Composition", "Cellular Support"],
   },
   {
     id: "wolverine-10mg",
     name: "Wolverine",
-    dosage: "10 mg",
-    price: 89.99,
+    dosage: "20 mg",
+    price: 250,
     image: "/wolverine.png",
     benefits: ["Tissue Repair", "Recovery", "Healing"],
   },
@@ -59,7 +59,7 @@ const products = [
     id: "ss-31-10mg",
     name: "SS-31",
     dosage: "10 mg",
-    price: 109.99,
+    price: 150,
     image: "/ss-31.png",
     benefits: ["Mitochondrial Support", "Cellular Energy", "Recovery"],
   },
@@ -67,15 +67,15 @@ const products = [
     id: "thymosin-alpha-10mg",
     name: "Thymosin-Alpha",
     dosage: "10 mg",
-    price: 99.99,
+    price: 250,
     image: "/thymosin-alpha.png",
     benefits: ["Immune Research", "Recovery", "Cellular Support"],
   },
   {
     id: "nad-plus-10mg",
     name: "NAD+",
-    dosage: "10 mg",
-    price: 139.99,
+    dosage: "1000 mg",
+    price: 300,
     image: "/nad-plus.png",
     benefits: ["Cellular Energy", "Longevity Research", "Metabolic Support"],
   },
@@ -83,15 +83,15 @@ const products = [
     id: "melanotan-2-10mg",
     name: "Melanotan 2",
     dosage: "10 mg",
-    price: 89.99,
+    price: 100,
     image: "/melanotan-2.png",
     benefits: ["Peptide Research", "Skin Pathways", "Cellular Study"],
   },
   {
     id: "ghk-cu-10mg",
     name: "GHK-CU",
-    dosage: "10 mg",
-    price: 119.99,
+    dosage: "50 mg",
+    price: 100,
     image: "/ghk-cu.png",
     benefits: ["Skin Research", "Cellular Renewal", "Tissue Support"],
   },
@@ -194,11 +194,11 @@ export function FeaturedProductsSection() {
                     {formatAzn(product.price)}
                   </Link>
                   <AddToCartRequestButton
-                    productLabel={product.name}
+                    productLabel={`${product.name} (${product.dosage})`}
                     size="sm"
                     className="h-12 w-full px-6 text-base opacity-100 transition-opacity sm:h-9 sm:w-auto sm:px-3 sm:text-sm sm:opacity-0 sm:group-hover:opacity-100 lg:h-11 lg:w-full lg:px-4 lg:text-sm lg:opacity-100 lg:shadow-sm"
                   >
-                    Send Request
+                    Read more
                   </AddToCartRequestButton>
                 </div>
               </div>

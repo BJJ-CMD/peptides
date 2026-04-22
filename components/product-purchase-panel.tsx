@@ -28,6 +28,7 @@ export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
   const isBacteriostaticWater = product.id === "bacteriostatic-water"
   const [selectedDosage, setSelectedDosage] = useState("20 mg")
   const [selectedVolume, setSelectedVolume] = useState("3 ml")
+  const [quantity, setQuantity] = useState(1)
 
   const selectedDosageOption = useMemo(() => {
     if (!isRetatrutide) return null
@@ -111,16 +112,27 @@ export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
 
       <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center">
         <div className="flex items-center rounded-lg border border-border">
-          <button className="flex h-10 w-10 items-center justify-center text-muted-foreground hover:text-foreground">
+          <button
+            type="button"
+            className="flex h-10 w-10 items-center justify-center text-muted-foreground hover:text-foreground disabled:opacity-40"
+            onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+            disabled={quantity <= 1}
+            aria-label="Decrease quantity"
+          >
             <Minus className="h-4 w-4" />
           </button>
-          <span className="flex h-10 w-12 items-center justify-center text-sm font-medium">1</span>
-          <button className="flex h-10 w-10 items-center justify-center text-muted-foreground hover:text-foreground">
+          <span className="flex h-10 w-12 items-center justify-center text-sm font-medium">{quantity}</span>
+          <button
+            type="button"
+            className="flex h-10 w-10 items-center justify-center text-muted-foreground hover:text-foreground"
+            onClick={() => setQuantity((q) => Math.min(99, q + 1))}
+            aria-label="Increase quantity"
+          >
             <Plus className="h-4 w-4" />
           </button>
         </div>
         <AddToCartRequestButton
-          productLabel={product.name}
+          productLabel={`${product.name} (${displayDosage}) x${quantity}`}
           size="lg"
           className="flex-1 sm:flex-none sm:px-12"
         >

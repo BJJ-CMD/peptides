@@ -101,7 +101,7 @@ const productCatalog: Record<string, Product> = {
     id: "bpc-157-10mg",
     name: "BPC-157",
     dosage: "10 mg",
-    price: 49.99,
+    price: 100,
     image: "/bpc-157.png",
     shortDescription:
       "Body Protection Compound-157, a pentadecapeptide derived from human gastric juice with tissue-protective properties. It is also researched for soft-tissue healing, tendon and ligament support, gut-health pathways, and angiogenesis-related recovery signaling.",
@@ -141,7 +141,7 @@ const productCatalog: Record<string, Product> = {
     id: "tb-500-10mg",
     name: "TB-500",
     dosage: "10 mg",
-    price: 54.99,
+    price: 170,
     image: "/tb-500.png",
     shortDescription:
       "Thymosin Beta-4 fragment, a naturally occurring peptide involved in tissue repair and cell migration. It is studied to support injury recovery, inflammation control, angiogenesis, and muscle, tendon, and ligament repair pathways.",
@@ -401,7 +401,7 @@ const productCatalog: Record<string, Product> = {
     id: "ss-31-10mg",
     name: "SS-31",
     dosage: "10 mg",
-    price: 109.99,
+    price: 150,
     image: "/ss-31.png",
     shortDescription:
       "A mitochondria-targeted peptide researched for cellular energy performance, oxidative-stress signaling, and recovery support. SS-31 (Elamipretide) is explored as a mitochondrial antioxidant linked to ATP-support and oxidative-stress reduction pathways.",

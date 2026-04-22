@@ -5,8 +5,28 @@ import { ShopPeptidesView } from "@/components/shop/shop-peptides-view"
 import { getShopPeptideListings } from "@/lib/shop-filters"
 
 export const metadata: Metadata = {
-  title: "Shop Peptides",
-  description: "Browse research-grade peptides with search and goal filters.",
+  title: "Shop Research Peptides | Pure Amino Peptides",
+  description: "Browse laboratory-grade peptides by category and discover high-purity compounds for research workflows.",
+  robots: { index: true, follow: true },
+  openGraph: {
+    title: "Shop Research Peptides | Pure Amino Peptides",
+    description: "Browse laboratory-grade peptides by category and discover high-purity compounds for research workflows.",
+    images: [
+      {
+        url: "https://pure-amino-peptides.com/og-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    url: "https://pure-amino-peptides.com/products",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pure Amino Peptides",
+    description: "High-purity laboratory-grade peptides.",
+    images: ["https://pure-amino-peptides.com/og-image.png"],
+  },
 }
 
 export default function ProductsPage() {

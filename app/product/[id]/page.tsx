@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
@@ -9,6 +10,69 @@ import { getAllProducts, getProduct, getRelatedProducts } from "@/lib/products"
 
 export function generateStaticParams() {
   return getAllProducts().map((product) => ({ id: product.id }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}): Promise<Metadata> {
+  const { id } = await params
+  const product = getProduct(id)
+  if (!product) {
+    return {
+      title: "Research Peptide | Pure Amino Peptides",
+      description: "Explore laboratory-grade peptide details and request high-purity compounds for research workflows.",
+      robots: { index: true, follow: true },
+      openGraph: {
+        title: "Research Peptide | Pure Amino Peptides",
+        description: "Explore laboratory-grade peptide details and request high-purity compounds for research workflows.",
+        images: [
+          {
+            url: "https://pure-amino-peptides.com/og-image.png",
+            width: 1200,
+            height: 630,
+          },
+        ],
+        url: "https://pure-amino-peptides.com/products",
+        type: "website",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: "Pure Amino Peptides",
+        description: "High-purity laboratory-grade peptides.",
+        images: ["https://pure-amino-peptides.com/og-image.png"],
+      },
+    }
+  }
+
+  const title = `${product.name} | Pure Amino Peptides`
+  const description = `${product.name} is a high-purity, laboratory-grade research peptide with structured protocol and sourcing details.`
+
+  return {
+    title,
+    description,
+    robots: { index: true, follow: true },
+    openGraph: {
+      title,
+      description,
+      images: [
+        {
+          url: "https://pure-amino-peptides.com/og-image.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+      url: `https://pure-amino-peptides.com/product/${product.id}`,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Pure Amino Peptides",
+      description: "High-purity laboratory-grade peptides.",
+      images: ["https://pure-amino-peptides.com/og-image.png"],
+    },
+  }
 }
 
 export default async function ProductPage({

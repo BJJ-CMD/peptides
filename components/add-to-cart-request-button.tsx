@@ -22,7 +22,7 @@ export function AddToCartRequestButton({ productLabel, className, children = "Se
     <div className="flex flex-col gap-1.5">
       <Button
         type="button"
-        className={cn("bg-[#14B8A6] text-white shadow-sm hover:bg-[#0f9f91]", className)}
+        className={cn("h-14 rounded-xl bg-[#14B8A6] text-lg font-semibold text-white shadow-md hover:bg-[#0f9f91]", className)}
         {...rest}
         onClick={() => {
           window.open(href, "_blank", "noopener,noreferrer")
@@ -30,7 +30,7 @@ export function AddToCartRequestButton({ productLabel, className, children = "Se
       >
         {children}
       </Button>
-      <p className="text-center text-[11px] leading-tight text-slate-500">
+      <p className="text-center text-xs leading-snug text-slate-500">
         You&apos;ll be redirected to WhatsApp to complete your request
       </p>
     </div>
