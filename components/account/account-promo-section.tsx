@@ -1,5 +1,3 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import { Sparkles } from "lucide-react"
 
 /**
@@ -24,13 +22,6 @@ export function AccountPromoSection() {
               Create an account to track orders, save favorites, and stay updated.
             </p>
           </div>
-          <Button
-            asChild
-            size="lg"
-            className="h-12 min-w-[200px] rounded-xl bg-[#14B8A6] px-8 text-base font-medium text-white shadow-sm transition-colors hover:bg-[#0f9f91]"
-          >
-            <Link href="/account">Create Account</Link>
-          </Button>
         </div>
       </div>
     </section>

@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
 import { useState } from "react"
 import {
   FileText,
@@ -11,7 +11,6 @@ import {
   Menu,
   Package,
   Search,
-  User,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import { BrandLogo } from "@/components/brand-logo"
@@ -36,7 +35,6 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const pathname = usePathname()
-  const router = useRouter()
   const navDebug = process.env.NODE_ENV !== "production"
 
   const openSearchSheet = () => {
@@ -84,12 +82,6 @@ export function Header() {
             <Search className="h-5 w-5" />
             <span className="sr-only">Search catalog</span>
           </Button>
-          <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-[#14B8A6]" asChild>
-            <Link href="/account">
-              <User className="h-5 w-5" />
-              <span className="sr-only">Account</span>
-            </Link>
-          </Button>
         </div>
 
         {/* Mobile Actions */}
@@ -104,21 +96,6 @@ export function Header() {
             <span>
               <Search className="h-4 w-4" />
               <span className="sr-only">Search catalog</span>
-            </span>
-          </Button>
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            className="h-11 w-11 rounded-lg text-muted-foreground hover:text-[#14B8A6]"
-            onClick={() => {
-              if (navDebug) console.info("[mobile-nav] account tap")
-              router.push("/account")
-            }}
-          >
-            <span>
-              <User className="h-4 w-4" />
-              <span className="sr-only">Account</span>
             </span>
           </Button>
           <Sheet
