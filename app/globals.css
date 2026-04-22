@@ -1,0 +1,127 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Pure Amino Peptides Brand Colors */
+  --background: #FFFFFF;
+  --foreground: #1C2E35;
+  --card: #FFFFFF;
+  --card-foreground: #1C2E35;
+  --popover: #FFFFFF;
+  --popover-foreground: #1C2E35;
+  --primary: #14b8a6;
+  --primary-foreground: #ffffff;
+  --secondary: #F8FAFA;
+  --secondary-foreground: #1C2E35;
+  --muted: #F8FAFA;
+  --muted-foreground: #64748B;
+  --accent: #6FE3E1;
+  --accent-foreground: #1C2E35;
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: #FFFFFF;
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --ring: #6FE3E1;
+  --chart-1: #14b8a6;
+  --chart-2: #6FE3E1;
+  --chart-3: #1C2E35;
+  --chart-4: #94A3B8;
+  --chart-5: #CBD5E1;
+  --radius: 0.625rem;
+  --sidebar: #F8FAFA;
+  --sidebar-foreground: #1C2E35;
+  --sidebar-primary: #14b8a6;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #6FE3E1;
+  --sidebar-accent-foreground: #1C2E35;
+  --sidebar-border: #E2E8F0;
+  --sidebar-ring: #6FE3E1;
+}
+
+.dark {
+  /* Pure Amino Peptides Dark Mode */
+  --background: #0F1A1D;
+  --foreground: #F8FAFA;
+  --card: #1C2E35;
+  --card-foreground: #F8FAFA;
+  --popover: #1C2E35;
+  --popover-foreground: #F8FAFA;
+  --primary: #6FE3E1;
+  --primary-foreground: #1C2E35;
+  --secondary: #1C2E35;
+  --secondary-foreground: #F8FAFA;
+  --muted: #1C2E35;
+  --muted-foreground: #94A3B8;
+  --accent: #6FE3E1;
+  --accent-foreground: #1C2E35;
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: #FFFFFF;
+  --border: #2D4A54;
+  --input: #2D4A54;
+  --ring: #6FE3E1;
+  --chart-1: #6FE3E1;
+  --chart-2: #5B9A9A;
+  --chart-3: #94A3B8;
+  --chart-4: #CBD5E1;
+  --chart-5: #F8FAFA;
+  --sidebar: #1C2E35;
+  --sidebar-foreground: #F8FAFA;
+  --sidebar-primary: #6FE3E1;
+  --sidebar-primary-foreground: #1C2E35;
+  --sidebar-accent: #2D4A54;
+  --sidebar-accent-foreground: #F8FAFA;
+  --sidebar-border: #2D4A54;
+  --sidebar-ring: #6FE3E1;
+}
+
+@theme inline {
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
