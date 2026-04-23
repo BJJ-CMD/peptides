@@ -80,7 +80,7 @@ function DisclaimerContent({
           </section>
 
           <section>
-            <h4 className="mb-1 font-semibold text-foreground">1. Research Use Only — Not for Human or Animal Consumption</h4>
+            <h4 className="mb-1 font-semibold text-foreground">1. Research Use Only</h4>
             <p>All products sold by Pure Aminos are intended strictly for laboratory, scientific, and research purposes only.</p>
             <p className="mt-2">Products are NOT intended for:</p>
             <ul className="mt-1 list-disc space-y-1 pl-5">
@@ -93,6 +93,9 @@ function DisclaimerContent({
             </ul>
             <p className="mt-2">
               Any misuse, ingestion, injection, inhalation, topical application, or other administration of products to humans or animals is strictly prohibited.
+            </p>
+            <p className="mt-2">
+              All compounds are provided as research chemicals and are not for human use.
             </p>
             <p className="mt-2">
               User assumes full responsibility for compliance with all applicable laws and regulations regarding purchase, possession, and use of research chemicals.
