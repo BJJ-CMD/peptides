@@ -12,7 +12,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ id, name, dosage, price, description }: ProductCardProps) {
   return (
-    <Link href={`/products/${id}`} className="block h-full">
+    <Link href={`/product/${id}`} className="block h-full">
       <Card className="h-full overflow-hidden">
         <CardHeader className="gap-3">
           <div className="h-36 w-full rounded-lg border border-border bg-muted/30" aria-hidden="true" />

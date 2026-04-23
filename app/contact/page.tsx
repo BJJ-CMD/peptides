@@ -1,7 +1,9 @@
 import type { Metadata } from "next"
+import { cookies } from "next/headers"
 import Link from "next/link"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
+import { LOCALE_COOKIE_NAME, normalizeLocale } from "@/lib/locale"
 import { Instagram, Phone, Send } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -9,43 +11,45 @@ export const metadata: Metadata = {
   description: "Reach Pure Amino Peptides via WhatsApp.",
 }
 
-const channels = [
-  {
-    title: "WhatsApp",
-    description: "Text or call us anytime",
-    placeholder: "+7 777 324 4837",
-    buttonLabel: "Contact on WhatsApp",
-    href: "https://wa.me/77773244837",
-    icon: Phone,
-    available: true,
-  },
-  {
-    title: "Telegram",
-    description: "Coming soon",
-    placeholder: "Coming soon",
-    buttonLabel: "Coming soon",
-    icon: Send,
-    available: false,
-  },
-  {
-    title: "Instagram",
-    description: "Coming soon",
-    placeholder: "Coming soon",
-    buttonLabel: "Coming soon",
-    icon: Instagram,
-    available: false,
-  },
-] as const
+export default async function ContactPage() {
+  const locale = normalizeLocale((await cookies()).get(LOCALE_COOKIE_NAME)?.value)
+  const isRu = locale === "ru"
+  const channels = [
+    {
+      title: "WhatsApp",
+      description: isRu ? "Пишите или звоните в любое время" : "Text or call us anytime",
+      placeholder: "+7 777 324 4837",
+      buttonLabel: isRu ? "Связаться в WhatsApp" : "Contact on WhatsApp",
+      href: "https://wa.me/77773244837",
+      icon: Phone,
+      available: true,
+    },
+    {
+      title: "Telegram",
+      description: isRu ? "Скоро" : "Coming soon",
+      placeholder: isRu ? "Скоро" : "Coming soon",
+      buttonLabel: isRu ? "Скоро" : "Coming soon",
+      icon: Send,
+      available: false,
+    },
+    {
+      title: "Instagram",
+      description: isRu ? "Скоро" : "Coming soon",
+      placeholder: isRu ? "Скоро" : "Coming soon",
+      buttonLabel: isRu ? "Скоро" : "Coming soon",
+      icon: Instagram,
+      available: false,
+    },
+  ] as const
 
-export default function ContactPage() {
   return (
     <div className="flex min-h-screen flex-col bg-[#FAFAFA]">
       <main className="flex-1">
         <div className="mx-auto w-full max-w-lg px-4 py-14 text-center sm:max-w-xl sm:px-6 sm:py-20 lg:max-w-2xl lg:py-24">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#14B8A6]">Get in touch</p>
-          <h1 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Contact Us</h1>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#14B8A6]">{isRu ? "Свяжитесь с нами" : "Get in touch"}</p>
+          <h1 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{isRu ? "Контакты" : "Contact Us"}</h1>
           <p className="mx-auto mt-3 max-w-md text-base leading-relaxed text-slate-600 sm:text-lg">
-            Reach out to us anytime — we&apos;re here to assist you.
+            {isRu ? "Напишите нам в любое время — мы всегда готовы помочь." : "Reach out to us anytime — we're here to assist you."}
           </p>
 
           <div className="mt-12 flex flex-col gap-6 sm:mt-14 sm:gap-7">

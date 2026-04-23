@@ -1,9 +1,23 @@
+"use client"
+
 import { Sparkles } from "lucide-react"
+import { useLanguage } from "@/components/language-provider"
 
 /**
  * Subtle pre-footer prompt encouraging account creation — used site-wide above main footer content.
  */
 export function AccountPromoSection() {
+  const { locale } = useLanguage()
+  const t = locale === "ru"
+    ? {
+        title: "Получайте ранний доступ к новым пептидам",
+        text: "Создайте аккаунт, чтобы отслеживать заказы, сохранять избранное и получать обновления.",
+      }
+    : {
+        title: "Get exclusive access to new peptides",
+        text: "Create an account to track orders, save favorites, and stay updated.",
+      }
+
   return (
     <section
       aria-labelledby="account-promo-heading"
@@ -16,10 +30,10 @@ export function AccountPromoSection() {
           </div>
           <div className="space-y-2">
             <h2 id="account-promo-heading" className="text-balance text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
-              Get exclusive access to new peptides
+              {t.title}
             </h2>
             <p className="text-pretty text-sm leading-relaxed text-slate-600 sm:text-base">
-              Create an account to track orders, save favorites, and stay updated.
+              {t.text}
             </p>
           </div>
         </div>

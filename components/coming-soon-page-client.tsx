@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react"
 import { Footer } from "@/components/footer"
+import { useLanguage } from "@/components/language-provider"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Search } from "lucide-react"
@@ -90,6 +91,26 @@ function whatsappUrl(message: string): string {
 export function ComingSoonPageClient() {
   const [query, setQuery] = useState("")
   const [selected, setSelected] = useState<string[]>([])
+  const { locale } = useLanguage()
+  const t = locale === "ru"
+    ? {
+        overline: "Каталог под запрос",
+        title: "Пептиды скоро в наличии",
+        subtitle: "Ищете конкретный пептид? Просмотрите позиции, которые мы можем привезти под запрос.",
+        placeholder: "Поиск пептидов...",
+        selected: "Выбранные пептиды:",
+        none: "Пока не выбрано",
+        request: "Запросить через WhatsApp",
+      }
+    : {
+        overline: "Request catalog",
+        title: "Coming Soon Peptides",
+        subtitle: "Looking for something specific? Browse peptides we can source on request.",
+        placeholder: "Search peptides...",
+        selected: "Selected peptides:",
+        none: "None yet",
+        request: "Request via WhatsApp",
+      }
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -107,10 +128,10 @@ export function ComingSoonPageClient() {
       <main className="flex-1">
         <section className="border-b border-gray-200/80 bg-white">
           <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#14B8A6]">Request catalog</p>
-            <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">Coming Soon Peptides</h1>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#14B8A6]">{t.overline}</p>
+            <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">{t.title}</h1>
             <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-600 sm:text-base">
-              Looking for something specific? Browse peptides we can source on request.
+              {t.subtitle}
             </p>
 
             <div className="relative mt-6">
@@ -119,7 +140,7 @@ export function ComingSoonPageClient() {
                 type="search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search peptides..."
+                placeholder={t.placeholder}
                 className="h-11 rounded-xl border-gray-200 bg-[#FAFAFA] pl-9 text-sm shadow-sm focus-visible:border-[#14B8A6]/40 focus-visible:ring-[#14B8A6]/20"
               />
             </div>
@@ -153,9 +174,9 @@ export function ComingSoonPageClient() {
 
           <div className="mt-10 rounded-2xl border border-[#14B8A6]/15 bg-white p-5 shadow-[0_10px_30px_-18px_rgba(20,184,166,0.45)] sm:p-6">
             <p className="text-sm text-slate-600">
-              Selected peptides:{" "}
+              {t.selected}{" "}
               <span className="font-semibold text-slate-900">
-                {selected.length > 0 ? selected.join(", ") : "None yet"}
+                {selected.length > 0 ? selected.join(", ") : t.none}
               </span>
             </p>
             {selected.length > 0 ? (
@@ -164,7 +185,7 @@ export function ComingSoonPageClient() {
                 className="mt-4 h-12 w-full rounded-xl bg-[#14B8A6] text-base font-semibold text-white shadow-sm hover:bg-[#0f9f91] sm:w-auto sm:px-8"
               >
                 <a href={whatsappUrl(globalMessage)} target="_blank" rel="noopener noreferrer">
-                  Request via WhatsApp
+                  {t.request}
                 </a>
               </Button>
             ) : (
@@ -173,7 +194,7 @@ export function ComingSoonPageClient() {
                 disabled
                 className="mt-4 h-12 w-full rounded-xl bg-slate-200 text-base font-semibold text-slate-500 shadow-none hover:bg-slate-200 sm:w-auto sm:px-8"
               >
-                Request via WhatsApp
+                {t.request}
               </Button>
             )}
           </div>

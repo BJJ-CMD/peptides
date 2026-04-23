@@ -2,6 +2,7 @@
 
 import type { ComponentProps } from "react"
 import { Button } from "@/components/ui/button"
+import { useLanguage } from "@/components/language-provider"
 import { cn } from "@/lib/utils"
 
 type Props = Omit<ComponentProps<typeof Button>, "onClick" | "type"> & {
@@ -16,7 +17,12 @@ function buildWhatsappUrl(productLabel: string): string {
 }
 
 export function AddToCartRequestButton({ productLabel, className, children = "Send Request", ...rest }: Props) {
+  const { locale } = useLanguage()
   const href = buildWhatsappUrl(productLabel)
+  const helperText =
+    locale === "ru"
+      ? "Вы будете перенаправлены в WhatsApp для завершения запроса"
+      : "You'll be redirected to WhatsApp to complete your request"
 
   return (
     <div className="flex flex-col gap-1.5">
@@ -31,7 +37,7 @@ export function AddToCartRequestButton({ productLabel, className, children = "Se
         {children}
       </Button>
       <p className="text-center text-xs leading-snug text-slate-500">
-        You&apos;ll be redirected to WhatsApp to complete your request
+        {helperText}
       </p>
     </div>
   )

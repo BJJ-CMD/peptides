@@ -13,6 +13,8 @@ import {
   Search,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
+import { LanguageSwitcher } from "@/components/language-switcher"
+import { useLanguage } from "@/components/language-provider"
 import { BrandLogo } from "@/components/brand-logo"
 import { HeaderSearchSheet } from "@/components/header-search-sheet"
 import { Button } from "@/components/ui/button"
@@ -23,12 +25,12 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet"
 
-const navigation: { name: string; href: string; icon: LucideIcon }[] = [
-  { name: "Home", href: "/", icon: Home },
-  { name: "Products", href: "/products", icon: Package },
-  { name: "Lab Reports", href: "/lab-reports", icon: FileText },
-  { name: "About Us", href: "/about", icon: Info },
-  { name: "Contact", href: "/contact", icon: Mail },
+const navigation: { key: string; href: string; icon: LucideIcon }[] = [
+  { key: "home", href: "/", icon: Home },
+  { key: "products", href: "/products", icon: Package },
+  { key: "labReports", href: "/lab-reports", icon: FileText },
+  { key: "aboutUs", href: "/about", icon: Info },
+  { key: "contact", href: "/contact", icon: Mail },
 ]
 
 export function Header() {
@@ -36,6 +38,36 @@ export function Header() {
   const [searchOpen, setSearchOpen] = useState(false)
   const pathname = usePathname()
   const navDebug = process.env.NODE_ENV !== "production"
+  const { locale } = useLanguage()
+  const t = locale === "ru"
+    ? {
+        home: "Главная",
+        products: "Продукты",
+        labReports: "Лаб-отчеты",
+        aboutUs: "О нас",
+        contact: "Контакты",
+        searchCatalog: "Поиск по каталогу",
+        openMenu: "Открыть меню",
+        menu: "Меню",
+        navMenuTitle: "Навигация",
+        navMenuDesc: "Основные разделы Pure Amino Peptides.",
+        tagline: "Каталог пептидов исследовательского класса",
+        researchOnly: "Только для исследований в контролируемых условиях.",
+      }
+    : {
+        home: "Home",
+        products: "Products",
+        labReports: "Lab Reports",
+        aboutUs: "About Us",
+        contact: "Contact",
+        searchCatalog: "Search catalog",
+        openMenu: "Open menu",
+        menu: "Menu",
+        navMenuTitle: "Navigation menu",
+        navMenuDesc: "Main site links for Pure Amino Peptides.",
+        tagline: "Research-grade catalog and resources",
+        researchOnly: "For research use in controlled settings.",
+      }
 
   const openSearchSheet = () => {
     // Open after current tap cycle to avoid mobile pointer-down outside race.
@@ -58,7 +90,7 @@ export function Header() {
         <nav className="hidden items-center gap-7 md:flex">
           {navigation.map((item) => (
             <Link
-              key={item.name}
+              key={item.key}
               href={item.href}
               className={`text-sm font-medium transition-colors ${
                 pathname === item.href
@@ -66,12 +98,13 @@ export function Header() {
                   : "text-muted-foreground hover:text-[#14B8A6]"
               }`}
             >
-              {item.name}
+              {t[item.key as keyof typeof t]}
             </Link>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-1 md:flex">
+        <div className="hidden items-center gap-2 md:flex">
+          <LanguageSwitcher />
           <Button
             type="button"
             variant="ghost"
@@ -80,7 +113,7 @@ export function Header() {
             onClick={() => setSearchOpen(true)}
           >
             <Search className="h-5 w-5" />
-            <span className="sr-only">Search catalog</span>
+            <span className="sr-only">{t.searchCatalog}</span>
           </Button>
         </div>
 
@@ -95,9 +128,10 @@ export function Header() {
           >
             <span>
               <Search className="h-4 w-4" />
-              <span className="sr-only">Search catalog</span>
+              <span className="sr-only">{t.searchCatalog}</span>
             </span>
           </Button>
+          <LanguageSwitcher />
           <Sheet
             open={isOpen}
             onOpenChange={(next) => {
@@ -114,22 +148,22 @@ export function Header() {
             >
               <span>
                 <Menu className="h-4 w-4" />
-                <span className="sr-only">Open menu</span>
+                <span className="sr-only">{t.openMenu}</span>
               </span>
             </Button>
             <SheetContent
               side="right"
               className="flex h-full w-[min(100vw-1.5rem,20rem)] flex-col gap-0 border-l border-gray-200/90 bg-white p-0 shadow-2xl sm:max-w-none [&>button]:right-5 [&>button]:top-5 [&>button]:flex [&>button]:h-10 [&>button]:w-10 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-xl [&>button]:border [&>button]:border-[#14B8A6]/25 [&>button]:bg-white [&>button]:text-[#14B8A6] [&>button]:opacity-100 [&>button]:shadow-sm [&>button]:transition-colors [&>button]:hover:bg-[#14B8A6]/10 [&>button]:hover:opacity-100"
             >
-              <SheetTitle className="sr-only">Navigation menu</SheetTitle>
+              <SheetTitle className="sr-only">{t.navMenuTitle}</SheetTitle>
               <SheetDescription className="sr-only">
-                Main site links for Pure Amino Peptides.
+                {t.navMenuDesc}
               </SheetDescription>
 
               <div className="border-b border-gray-100 bg-gradient-to-b from-[#F8FAFA] to-white px-5 pb-5 pt-14">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#14B8A6]">Menu</p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#14B8A6]">{t.menu}</p>
                 <p className="mt-1 text-lg font-semibold tracking-tight text-slate-900">Pure Amino Peptides</p>
-                <p className="mt-1 text-xs leading-relaxed text-slate-500">Research-grade catalog and resources</p>
+                <p className="mt-1 text-xs leading-relaxed text-slate-500">{t.tagline}</p>
               </div>
 
               <nav className="flex flex-1 flex-col gap-1 px-3 py-4" aria-label="Mobile">
@@ -138,7 +172,7 @@ export function Header() {
                   const Icon = item.icon
                   return (
                     <Link
-                      key={item.name}
+                      key={item.key}
                       href={item.href}
                       onClick={() => setIsOpen(false)}
                       className={`group flex items-center gap-3 rounded-xl px-3 py-3 text-[15px] font-medium transition-colors ${
@@ -156,14 +190,14 @@ export function Header() {
                       >
                         <Icon className="h-4 w-4" strokeWidth={1.75} aria-hidden />
                       </span>
-                      <span>{item.name}</span>
+                      <span>{t[item.key as keyof typeof t]}</span>
                     </Link>
                   )
                 })}
               </nav>
 
               <div className="mt-auto border-t border-gray-100 px-5 py-4">
-                <p className="text-center text-[11px] leading-relaxed text-slate-400">For research use in controlled settings.</p>
+                <p className="text-center text-[11px] leading-relaxed text-slate-400">{t.researchOnly}</p>
               </div>
             </SheetContent>
           </Sheet>

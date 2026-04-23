@@ -1,4 +1,7 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
+import { useLanguage } from "@/components/language-provider"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 
@@ -16,10 +19,25 @@ type Props = {
  */
 export function BundlesNotifyBlock({ className, submitLabel = "Notify me", variant = "footer" }: Props) {
   const centered = variant === "centered"
+  const { locale } = useLanguage()
+  const t = locale === "ru"
+    ? {
+        stayUpdated: "Будьте в курсе",
+        notify: "Получайте уведомления о запуске наборов.",
+        email: "Введите ваш email",
+        submitLabel: submitLabel === "Notify me" ? "Уведомить меня" : submitLabel,
+      }
+    : {
+        stayUpdated: "Stay updated",
+        notify: "Get notified when bundles launch.",
+        email: "Enter your email",
+        submitLabel,
+      }
+
   return (
     <div className={cn(centered && "text-center sm:mx-auto sm:max-w-md", className)}>
-      <p className="text-sm font-medium text-foreground">Stay updated</p>
-      <p className="mt-1 text-sm text-muted-foreground">Get notified when bundles launch.</p>
+      <p className="text-sm font-medium text-foreground">{t.stayUpdated}</p>
+      <p className="mt-1 text-sm text-muted-foreground">{t.notify}</p>
       <form
         className={cn(
           "mt-3 flex gap-2",
@@ -28,11 +46,11 @@ export function BundlesNotifyBlock({ className, submitLabel = "Notify me", varia
       >
         <Input
           type="email"
-          placeholder="Enter your email"
+          placeholder={t.email}
           className="w-full max-w-full bg-background sm:max-w-[240px]"
         />
         <Button type="submit" className="shrink-0">
-          {submitLabel}
+          {t.submitLabel}
         </Button>
       </form>
     </div>

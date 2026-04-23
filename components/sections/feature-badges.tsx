@@ -1,7 +1,11 @@
+"use client"
+
 import { BadgeCheck, FlaskConical, Shield } from "lucide-react"
+import { useLanguage } from "@/components/language-provider"
 import { cn } from "@/lib/utils"
 
-const badges = [
+const badges = {
+  en: [
   {
     title: "99%+ Purity",
     subtitle: "Lab Tested",
@@ -17,7 +21,13 @@ const badges = [
     subtitle: "Quality Verified",
     icon: Shield,
   },
-]
+  ],
+  ru: [
+    { title: "Чистота 99%+", subtitle: "Лабораторно проверено", icon: FlaskConical },
+    { title: "COA подтвержден", subtitle: "Независимое тестирование", icon: BadgeCheck },
+    { title: "Исследовательский класс", subtitle: "Качество подтверждено", icon: Shield },
+  ],
+}
 
 type FeatureBadgesProps = {
   /** Use on dark (e.g. black) hero backgrounds */
@@ -26,10 +36,12 @@ type FeatureBadgesProps = {
 
 export function FeatureBadges({ variant = "default" }: FeatureBadgesProps) {
   const dark = variant === "dark"
+  const { locale } = useLanguage()
+  const items = locale === "ru" ? badges.ru : badges.en
 
   return (
     <div className="mt-8 grid w-full grid-cols-3 gap-2 sm:mt-10 sm:gap-5">
-      {badges.map((badge) => {
+      {items.map((badge) => {
         const Icon = badge.icon
         return (
           <div

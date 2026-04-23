@@ -1,10 +1,28 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import { useLanguage } from "@/components/language-provider"
 import { FeatureBadges } from "@/components/sections/feature-badges"
 
 export function HeroSection() {
+  const { locale } = useLanguage()
+  const t = locale === "ru"
+    ? {
+        line1: "Чистые пептиды.",
+        line2: "Проверенное качество.",
+        text: "Пептиды исследовательского класса с чистотой 99%+, подтвержденной независимым тестированием и надежными протоколами. Лабораторные отчеты доступны.",
+        cta: "Каталог пептидов",
+      }
+    : {
+        line1: "Pure Peptides.",
+        line2: "Proven Quality.",
+        text: "Research-grade peptides with 99%+ purity, backed by independent testing and protocols you can trust. Lab reports available.",
+        cta: "Shop Peptides",
+      }
+
   return (
     <section className="relative overflow-hidden bg-white">
       <div className="mx-auto w-full max-w-[1500px] px-5 py-12 sm:px-10 sm:py-20 lg:px-12 lg:py-24">
@@ -12,13 +30,12 @@ export function HeroSection() {
           {/* Left Content */}
           <div className="flex flex-col items-start justify-center">
             <h1 className="text-balance text-[50px] font-bold leading-[1.05] tracking-tight text-slate-900 sm:text-6xl lg:text-7xl">
-              Pure Peptides.
+              {t.line1}
               <br />
-              Proven Quality.
+              {t.line2}
             </h1>
             <p className="mt-4 max-w-2xl text-lg leading-relaxed text-slate-500 sm:text-xl lg:text-[2rem]">
-              Research-grade peptides with 99%+ purity, backed by independent testing and protocols
-              you can trust. Lab reports available.
+              {t.text}
             </p>
             <div className="mt-6 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
               <Button
@@ -27,7 +44,7 @@ export function HeroSection() {
                 className="h-14 w-full rounded-xl bg-[#14B8A6] px-6 text-base text-white transition-colors hover:bg-[#0f9f91] sm:h-16 sm:w-auto sm:px-9 sm:text-xl"
               >
                 <Link href="/products" className="flex items-center gap-2">
-                  Shop Peptides
+                  {t.cta}
                   <ArrowRight className="h-5 w-5" />
                 </Link>
               </Button>

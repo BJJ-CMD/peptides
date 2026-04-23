@@ -14,7 +14,9 @@ import {
 } from "@/components/ui/sheet"
 import { getAllProducts } from "@/lib/products"
 import { peptideSearchScore, suggestPeptidesForQuery } from "@/lib/peptide-search"
+import { getLocalizedPeptideShortDescription } from "@/lib/product-translations"
 import { cn } from "@/lib/utils"
+import { useLanguage } from "@/components/language-provider"
 
 type Props = {
   open: boolean
@@ -26,6 +28,30 @@ export function HeaderSearchSheet({ open, onOpenChange }: Props) {
   const [term, setTerm] = useState("")
   const [debouncedTerm, setDebouncedTerm] = useState("")
   const [highlightIndex, setHighlightIndex] = useState(-1)
+  const { locale } = useLanguage()
+  const t = locale === "ru"
+    ? {
+        title: "Поиск по каталогу",
+        desc: "Введите название или ключевое слово — мы подскажем подходящие варианты даже при небольших опечатках.",
+        placeholder: "например: BPC, Retatrutide, восстановление…",
+        search: "Искать",
+        suggested: "Рекомендуемые совпадения",
+        approx: "Приблизительное совпадение",
+        noMatches: "Похожих совпадений пока нет — нажмите «Искать», чтобы открыть каталог.",
+        typeMore: "Введите еще одну букву для приблизительных совпадений.",
+        hint: "Нажмите Enter для поиска · стрелки работают при появлении подсказок",
+      }
+    : {
+        title: "Search catalog",
+        desc: "Type a name or keyword — we suggest close matches, even with small spelling mistakes.",
+        placeholder: "e.g. BPC, Retatrutide, recovery…",
+        search: "Search",
+        suggested: "Suggested matches",
+        approx: "Approximate match",
+        noMatches: "No close matches yet — press Search to open the shop anyway.",
+        typeMore: "Type another letter for approximate matches.",
+        hint: "Press Enter to search · Arrow keys when suggestions appear",
+      }
   const inputRef = useRef<HTMLInputElement>(null)
   const listRef = useRef<HTMLUListElement>(null)
 
@@ -105,9 +131,9 @@ export function HeaderSearchSheet({ open, onOpenChange }: Props) {
         className="inset-x-0 top-0 flex max-h-[min(92vh,36rem)] w-full flex-col overflow-hidden rounded-b-3xl border-0 border-b border-gray-200/90 bg-white px-4 pb-6 pt-6 shadow-xl sm:px-8"
       >
         <SheetHeader className="shrink-0 space-y-1 text-left">
-          <SheetTitle className="text-xl font-semibold tracking-tight text-slate-900">Search catalog</SheetTitle>
+          <SheetTitle className="text-xl font-semibold tracking-tight text-slate-900">{t.title}</SheetTitle>
           <SheetDescription className="text-sm text-slate-500">
-            Type a name or keyword — we suggest close matches, even with small spelling mistakes.
+            {t.desc}
           </SheetDescription>
         </SheetHeader>
         <form onSubmit={onSubmit} className="mt-5 flex shrink-0 flex-col gap-3 sm:flex-row sm:items-stretch">
@@ -123,7 +149,7 @@ export function HeaderSearchSheet({ open, onOpenChange }: Props) {
               aria-expanded={suggestions.length > 0}
               aria-controls="catalog-search-suggestions"
               aria-autocomplete="list"
-              placeholder="e.g. BPC, Retatrutide, recovery…"
+              placeholder={t.placeholder}
               value={term}
               onChange={(e) => setTerm(e.target.value)}
               onKeyDown={onKeyDown}
@@ -135,7 +161,7 @@ export function HeaderSearchSheet({ open, onOpenChange }: Props) {
             type="submit"
             className="h-12 shrink-0 rounded-xl bg-[#14B8A6] px-6 text-base font-semibold text-white shadow-sm hover:bg-[#0f9f91] sm:w-auto"
           >
-            Search
+            {t.search}
             <ArrowRight className="ml-2 h-4 w-4 opacity-90" aria-hidden />
           </Button>
         </form>
@@ -146,7 +172,7 @@ export function HeaderSearchSheet({ open, onOpenChange }: Props) {
               <div className="flex items-center gap-2 border-b border-gray-100/90 px-3 py-2">
                 <Sparkles className="h-3.5 w-3.5 text-[#14B8A6]" aria-hidden />
                 <p id="catalog-search-suggestions" className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
-                  Suggested matches
+                  {t.suggested}
                 </p>
               </div>
               <ul ref={listRef} className="max-h-[min(52vh,16rem)] space-y-0.5 overflow-y-auto overscroll-contain p-1.5 sm:max-h-[min(48vh,18rem)]" role="listbox">
@@ -168,10 +194,12 @@ export function HeaderSearchSheet({ open, onOpenChange }: Props) {
                         )}
                       >
                         <span className="text-sm font-semibold text-slate-900">{p.name}</span>
-                        <span className="mt-0.5 line-clamp-1 text-xs leading-snug text-slate-500">{p.shortDescription}</span>
+                        <span className="mt-0.5 line-clamp-1 text-xs leading-snug text-slate-500">
+                          {getLocalizedPeptideShortDescription(p.id, p.shortDescription, locale)}
+                        </span>
                         {score < 100 ? (
                           <span className="mt-1 text-[10px] font-medium uppercase tracking-wide text-[#14B8A6]/90">
-                            Approximate match
+                            {t.approx}
                           </span>
                         ) : null}
                       </button>
@@ -182,12 +210,12 @@ export function HeaderSearchSheet({ open, onOpenChange }: Props) {
             </div>
           ) : term.trim().length >= 2 && debouncedTerm === term && suggestions.length === 0 ? (
             <p className="rounded-xl border border-dashed border-gray-200 bg-slate-50/80 px-4 py-3 text-center text-sm text-slate-500">
-              No close matches yet — press Search to open the shop anyway.
+              {t.noMatches}
             </p>
           ) : term.trim().length === 1 ? (
-            <p className="text-center text-xs text-slate-400">Type another letter for approximate matches.</p>
+            <p className="text-center text-xs text-slate-400">{t.typeMore}</p>
           ) : (
-            <p className="text-center text-xs text-slate-400">Press Enter to search · Arrow keys when suggestions appear</p>
+            <p className="text-center text-xs text-slate-400">{t.hint}</p>
           )}
         </div>
       </SheetContent>

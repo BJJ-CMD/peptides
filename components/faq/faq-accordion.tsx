@@ -18,6 +18,7 @@ import {
   Truck,
 } from "lucide-react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { useLanguage } from "@/components/language-provider"
 
 type FaqEntry = {
   id: string
@@ -26,7 +27,8 @@ type FaqEntry = {
   answer: ReactNode
 }
 
-const faqs: FaqEntry[] = [
+const faqs: Record<"en" | "ru", FaqEntry[]> = {
+  en: [
   {
     id: "quality",
     question: "What makes your products high quality?",
@@ -115,12 +117,43 @@ const faqs: FaqEntry[] = [
     icon: RefreshCw,
     answer: "Yes. We continuously refine and expand our selection to maintain a high standard.",
   },
-]
+  ],
+  ru: [
+    { id: "quality", question: "Почему ваши продукты считаются качественными?", icon: Sparkles, answer: "Мы отбираем продукты с акцентом на чистоту, стабильность и надежные источники поставки. В каталоге соблюдаются строгие стандарты и тщательный контроль." },
+    { id: "shipping-time", question: "Сколько занимает доставка?", icon: Truck, answer: "Большинство заказов доставляется в течение 48 часов. Срок может немного меняться в зависимости от региона и запроса." },
+    { id: "delivery-adjust", question: "Можно ли согласовать доставку индивидуально?", icon: CalendarClock, answer: "Да. Если вам нужно конкретное время или особые условия, свяжитесь с нами — мы постараемся подстроиться." },
+    { id: "refunds", question: "Есть ли возврат или обмен?", icon: Ban, answer: "Все продажи окончательные. После оформления заказа возврат, обмен и отмена не предусмотрены." },
+    {
+      id: "contact",
+      question: "Как с вами связаться?",
+      icon: MessageCircle,
+      answer: (
+        <span>
+          Вы можете связаться с нами через Telegram, WhatsApp или Instagram. Подробности — на странице{" "}
+          <Link href="/contact" className="font-medium text-[#14B8A6] underline-offset-2 hover:underline">
+            Контакты
+          </Link>
+          .
+        </span>
+      ),
+    },
+    { id: "choose-product", question: "Как выбрать подходящий продукт?", icon: Target, answer: "Рекомендуем внимательно изучить информацию о продукте и выбирать исходя из ваших целей и предпочтений." },
+    { id: "guidance", question: "Вы даете рекомендации?", icon: Compass, answer: "Мы предоставляем общую информацию о продуктах. Для более глубокой оценки рекомендуем изучать независимые источники." },
+    { id: "learn-more", question: "Где можно узнать больше перед покупкой?", icon: BookOpen, answer: "Изучайте независимую информацию, сравнивайте разные мнения и отзывы пользователей перед принятием решения." },
+    { id: "batches", question: "Стабильно ли качество между партиями?", icon: FlaskConical, answer: "Мы поддерживаем единый стандарт качества за счет тщательного отбора и контроля поставок." },
+    { id: "ordering-simple", question: "Оформление заказа простое?", icon: ShoppingCart, answer: "Да. Процесс сделан быстрым, аккуратным и понятным — от выбора до оформления." },
+    { id: "before-order", question: "Что делать, если есть вопросы до заказа?", icon: HelpCircle, answer: "Свяжитесь с нами в любое время — мы поможем уточнить детали до оформления заказа." },
+    { id: "catalog", question: "Вы обновляете каталог?", icon: RefreshCw, answer: "Да. Мы постоянно обновляем и расширяем ассортимент, чтобы поддерживать высокий стандарт." },
+  ],
+}
 
 export function FaqAccordion() {
+  const { locale } = useLanguage()
+  const items = locale === "ru" ? faqs.ru : faqs.en
+
   return (
     <Accordion type="single" collapsible className="w-full">
-      {faqs.map((item) => {
+      {items.map((item) => {
         const Icon = item.icon
         return (
           <AccordionItem key={item.id} value={item.id} className="border-b border-gray-100 last:border-b-0">

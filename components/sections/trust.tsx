@@ -1,6 +1,10 @@
-import { FileText, FlaskConical, Shield, UserCheck } from "lucide-react"
+"use client"
 
-const trustItems = [
+import { FileText, FlaskConical, Shield, UserCheck } from "lucide-react"
+import { useLanguage } from "@/components/language-provider"
+
+const trustItems = {
+  en: [
   {
     icon: Shield,
     title: "99%+ Purity",
@@ -21,14 +25,24 @@ const trustItems = [
     title: "Controlled Storage",
     description: "Temperature-controlled processing and storage conditions",
   },
-]
+  ],
+  ru: [
+    { icon: Shield, title: "Чистота 99%+", description: "Подтверждено HPLC-анализом" },
+    { icon: FlaskConical, title: "Независимые лабораторные тесты", description: "Проверка каждой партии сторонней лабораторией" },
+    { icon: FileText, title: "Доступны COA", description: "Сертификат анализа для каждого продукта" },
+    { icon: UserCheck, title: "Контролируемое хранение", description: "Температурный контроль на этапах обработки и хранения" },
+  ],
+}
 
 export function TrustSection() {
+  const { locale } = useLanguage()
+  const items = locale === "ru" ? trustItems.ru : trustItems.en
+
   return (
     <section className="border-y border-border/50 bg-[#F8FAFA] py-5 sm:py-8">
       <div className="mx-auto w-full max-w-[1500px] px-4 sm:px-10 lg:px-12">
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
-          {trustItems.map((item) => (
+          {items.map((item) => (
             <div
               key={item.title}
               className="relative rounded-lg border border-border/50 bg-background/70 p-3 sm:rounded-xl sm:p-4"

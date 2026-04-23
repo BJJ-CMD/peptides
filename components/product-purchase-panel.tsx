@@ -3,10 +3,12 @@
 import { useMemo, useState } from "react"
 import { Minus, Plus } from "lucide-react"
 import { AddToCartRequestButton } from "@/components/add-to-cart-request-button"
+import { useLanguage } from "@/components/language-provider"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import type { Product } from "@/lib/products"
 import { formatAzn } from "@/lib/currency"
+import { getLocalizedPeptideShortDescription } from "@/lib/product-translations"
 
 interface ProductPurchasePanelProps {
   product: Product
@@ -24,6 +26,7 @@ const bacteriostaticWaterOptions = [
 ]
 
 export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
+  const { locale } = useLanguage()
   const isRetatrutide = product.id === "retatrutide-20mg"
   const isBacteriostaticWater = product.id === "bacteriostatic-water"
   const [selectedDosage, setSelectedDosage] = useState("20 mg")
@@ -42,7 +45,22 @@ export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
 
   const displayDosage = selectedDosageOption?.dosage ?? selectedVolumeOption?.dosage ?? product.dosage
   const displayPrice = selectedDosageOption?.price ?? selectedVolumeOption?.price ?? product.price
-  const description = product.shortDescription
+  const description = getLocalizedPeptideShortDescription(product.id, product.shortDescription, locale)
+  const t = locale === "ru"
+    ? {
+        selectDosage: "Выберите дозировку",
+        selectVolume: "Выберите объем",
+        decrease: "Уменьшить количество",
+        increase: "Увеличить количество",
+        sendRequest: "Отправить запрос",
+      }
+    : {
+        selectDosage: "Select dosage",
+        selectVolume: "Select volume",
+        decrease: "Decrease quantity",
+        increase: "Increase quantity",
+        sendRequest: "Send Request",
+      }
 
   return (
     <div className="flex flex-col">
@@ -52,7 +70,7 @@ export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
 
       {isRetatrutide && (
         <div className="mt-5">
-          <p className="text-sm font-medium text-foreground">Select dosage</p>
+          <p className="text-sm font-medium text-foreground">{t.selectDosage}</p>
           <div className="mt-2 flex flex-wrap gap-2">
             {retatrutideOptions.map((option) => {
               const isSelected = option.dosage === selectedDosage
@@ -77,7 +95,7 @@ export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
 
       {isBacteriostaticWater && (
         <div className="mt-5">
-          <p className="text-sm font-medium text-foreground">Select volume</p>
+          <p className="text-sm font-medium text-foreground">{t.selectVolume}</p>
           <div className="mt-2 flex flex-wrap gap-2">
             {bacteriostaticWaterOptions.map((option) => {
               const isSelected = option.dosage === selectedVolume
@@ -117,7 +135,7 @@ export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
             className="flex h-10 w-10 items-center justify-center text-muted-foreground hover:text-foreground disabled:opacity-40"
             onClick={() => setQuantity((q) => Math.max(1, q - 1))}
             disabled={quantity <= 1}
-            aria-label="Decrease quantity"
+            aria-label={t.decrease}
           >
             <Minus className="h-4 w-4" />
           </button>
@@ -126,7 +144,7 @@ export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
             type="button"
             className="flex h-10 w-10 items-center justify-center text-muted-foreground hover:text-foreground"
             onClick={() => setQuantity((q) => Math.min(99, q + 1))}
-            aria-label="Increase quantity"
+            aria-label={t.increase}
           >
             <Plus className="h-4 w-4" />
           </button>
@@ -136,7 +154,7 @@ export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
           size="lg"
           className="flex-1 sm:flex-none sm:px-12"
         >
-          Send Request
+          {t.sendRequest}
         </AddToCartRequestButton>
       </div>
     </div>

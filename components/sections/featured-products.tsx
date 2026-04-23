@@ -1,8 +1,11 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
-import { AddToCartRequestButton } from "@/components/add-to-cart-request-button"
 import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { useLanguage } from "@/components/language-provider"
 import { FlaskConical } from "lucide-react"
 import { formatAzn } from "@/lib/currency"
 
@@ -98,6 +101,9 @@ const products = [
 ]
 
 export function FeaturedProductsSection() {
+  const { locale } = useLanguage()
+  const readMoreLabel = locale === "ru" ? "Подробнее" : "Read more"
+
   return (
     <section className="border-t border-border/50 bg-secondary/30 py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -110,9 +116,9 @@ export function FeaturedProductsSection() {
               Our most popular research compounds
             </p>
           </div>
-          <Button asChild variant="outline">
-            <Link href="/products">View All Products</Link>
-          </Button>
+          <Link href="/products" className={buttonVariants({ variant: "outline" })}>
+            View All Products
+          </Link>
         </div>
 
         <div className="mt-8 grid grid-cols-1 gap-5 pr-1 sm:mt-10 sm:grid-cols-2 sm:gap-6 sm:pr-0 lg:grid-cols-3 lg:gap-8 lg:px-0 lg:pr-8 xl:grid-cols-3 xl:gap-10 xl:pr-10 2xl:grid-cols-4 2xl:gap-10 2xl:pr-12">
@@ -193,13 +199,13 @@ export function FeaturedProductsSection() {
                   >
                     {formatAzn(product.price)}
                   </Link>
-                  <AddToCartRequestButton
-                    productLabel={`${product.name} (${product.dosage})`}
+                  <Button
+                    asChild
                     size="sm"
                     className="h-12 w-full px-6 text-base opacity-100 transition-opacity sm:h-9 sm:w-auto sm:px-3 sm:text-sm sm:opacity-0 sm:group-hover:opacity-100 lg:h-11 lg:w-full lg:px-4 lg:text-sm lg:opacity-100 lg:shadow-sm"
                   >
-                    Read more
-                  </AddToCartRequestButton>
+                    <Link href={`/product/${product.id}`}>{readMoreLabel}</Link>
+                  </Button>
                 </div>
               </div>
             </div>

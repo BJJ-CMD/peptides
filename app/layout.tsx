@@ -1,9 +1,12 @@
 import type { Metadata, Viewport } from 'next'
+import { cookies } from "next/headers"
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { CartRequestProvider } from '@/components/cart-request-provider'
 import { ConsentGate } from '@/components/consent-gate'
 import { Header } from '@/components/header'
+import { LanguageProvider } from "@/components/language-provider"
+import { LOCALE_COOKIE_NAME, normalizeLocale } from "@/lib/locale"
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
@@ -47,20 +50,24 @@ export const viewport: Viewport = {
   initialScale: 1,
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const locale = normalizeLocale((await cookies()).get(LOCALE_COOKIE_NAME)?.value)
+
   return (
-    <html lang="en" className="bg-background">
+    <html lang={locale} className="bg-background">
       <body className="min-h-screen bg-background font-sans antialiased">
-        <ConsentGate>
-          <CartRequestProvider>
-            <Header />
-            {children}
-          </CartRequestProvider>
-        </ConsentGate>
+        <LanguageProvider initialLocale={locale}>
+          <ConsentGate>
+            <CartRequestProvider>
+              <Header />
+              {children}
+            </CartRequestProvider>
+          </ConsentGate>
+        </LanguageProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

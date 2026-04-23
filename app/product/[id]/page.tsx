@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { cookies } from "next/headers"
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
@@ -6,6 +7,7 @@ import { Footer } from "@/components/footer"
 import { ProductImagePlaceholder, productHasCatalogImage } from "@/components/product-image-placeholder"
 import { ProductPurchasePanel } from "@/components/product-purchase-panel"
 import { formatAzn } from "@/lib/currency"
+import { LOCALE_COOKIE_NAME, normalizeLocale } from "@/lib/locale"
 import { getAllProducts, getProduct, getRelatedProducts } from "@/lib/products"
 
 export function generateStaticParams() {
@@ -80,6 +82,18 @@ export default async function ProductPage({
 }: {
   params: Promise<{ id: string }>
 }) {
+  const locale = normalizeLocale((await cookies()).get(LOCALE_COOKIE_NAME)?.value)
+  const t =
+    locale === "ru"
+      ? {
+          researchBenefits: "Исследовательские преимущества",
+          relatedProducts: "Похожие продукты",
+        }
+      : {
+          researchBenefits: "Research Benefits",
+          relatedProducts: "Related Products",
+        }
+
   const { id } = await params
   const product = getProduct(id)
 
@@ -124,7 +138,7 @@ export default async function ProductPage({
         <section className="bg-background py-12">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-bold text-foreground">
-              Research Benefits
+              {t.researchBenefits}
             </h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {product.detailedBenefits.map((benefit, index) => (
@@ -147,7 +161,7 @@ export default async function ProductPage({
           <section className="border-t border-border/50 bg-secondary/30 py-12">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <h2 className="text-2xl font-bold text-foreground">
-                Related Products
+                {t.relatedProducts}
               </h2>
               <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {related.map((relatedProduct) => (
