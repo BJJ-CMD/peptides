@@ -8,12 +8,12 @@ import { HeroSection } from "@/components/sections/hero"
 import { TrustSection } from "@/components/sections/trust"
 
 export const metadata: Metadata = {
-  title: "Clinical-Grade Peptides | Pure Amino Peptides",
-  description: "High-purity research peptides. Explore laboratory-grade compounds and request unavailable items directly.",
+  title: "Pure Amino Peptides",
+  description: "Clinical-grade research peptides with 99%+ purity.",
   robots: { index: true, follow: true },
   openGraph: {
-    title: "Clinical-Grade Peptides | Pure Amino Peptides",
-    description: "High-purity research peptides. Explore laboratory-grade compounds and request unavailable items directly.",
+    title: "Pure Amino Peptides",
+    description: "Clinical-grade research peptides with 99%+ purity.",
     images: [
       {
         url: "https://pure-amino-peptides.com/og-image.png",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Pure Amino Peptides",
-    description: "High-purity laboratory-grade peptides.",
+    description: "Clinical-grade research peptides with 99%+ purity.",
     images: ["https://pure-amino-peptides.com/og-image.png"],
   },
 }

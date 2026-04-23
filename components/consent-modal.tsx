@@ -82,17 +82,8 @@ function DisclaimerContent({
           <section>
             <h4 className="mb-1 font-semibold text-foreground">1. Research Use Only</h4>
             <p>All products sold by Pure Aminos are intended strictly for laboratory, scientific, and research purposes only.</p>
-            <p className="mt-2">Products are NOT intended for:</p>
-            <ul className="mt-1 list-disc space-y-1 pl-5">
-              <li>Human consumption</li>
-              <li>Animal consumption</li>
-              <li>Clinical or medical use</li>
-              <li>Diagnostic or therapeutic purposes</li>
-              <li>Veterinary use</li>
-              <li>Any in vivo experimentation</li>
-            </ul>
             <p className="mt-2">
-              Any misuse, ingestion, injection, inhalation, topical application, or other administration of products to humans or animals is strictly prohibited.
+              Products must remain within laboratory workflows and are not intended for personal, clinical, veterinary, diagnostic, therapeutic, or in vivo use.
             </p>
             <p className="mt-2">
               All compounds are provided as research chemicals and are not for human use.
