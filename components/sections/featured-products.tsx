@@ -30,7 +30,7 @@ const products = [
     id: "glow-10mg",
     name: "GLOW",
     dosage: "70 mg",
-    price: 250,
+    price: 300,
     image: "/GLOW.png",
     benefits: ["Skin Support", "Cellular Renewal", "Radiance"],
   },

@@ -266,7 +266,7 @@ const productCatalog: Record<string, Product> = {
     id: "glow-10mg",
     name: "GLOW",
     dosage: "70 mg",
-    price: 250,
+    price: 300,
     image: "/GLOW.png",
     shortDescription:
       "A multi-pathway peptide blend researched for skin quality, cellular renewal, and cosmetic wellness support. GLOW combines GHK-Cu, BPC-157, and TB-500 in research protocols focused on collagen support, tissue repair, and skin appearance.",
