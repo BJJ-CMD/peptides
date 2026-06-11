@@ -10,7 +10,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { ProductImagePlaceholder, productHasCatalogImage } from "@/components/product-image-placeholder"
-import { formatAzn } from "@/lib/currency"
+import { formatUsd } from "@/lib/currency"
 import { productMatchesSearchQuery, suggestPeptidesForQuery } from "@/lib/peptide-search"
 import { getLocalizedPeptideShortDescription } from "@/lib/product-translations"
 import type { ShopFilterId, ShopPeptideListing } from "@/lib/shop-filters"
@@ -429,7 +429,7 @@ function ShopProductCard({ product, locale }: { product: ShopPeptideListing; loc
           </Link>
         </h2>
         <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500">{product.dosage}</p>
-        <p className="text-base font-bold tabular-nums text-slate-900 sm:text-lg">{formatAzn(product.price)}</p>
+        <p className="text-base font-bold tabular-nums text-slate-900 sm:text-lg">{formatUsd(product.price)}</p>
         <Button
           asChild
           size="sm"

@@ -3,28 +3,28 @@ export const products = [
     id: "fat-loss-1",
     name: "Fat Loss Peptide",
     dosage: "20mg",
-    price: "₼79.99",
+    price: "$79.99",
     description: "Supports metabolism and appetite control",
   },
   {
     id: "recovery-1",
     name: "Recovery Peptide",
     dosage: "10mg",
-    price: "₼59.99",
+    price: "$59.99",
     description: "Accelerates tissue repair and recovery",
   },
   {
     id: "longevity-1",
     name: "Longevity Peptide",
     dosage: "15mg",
-    price: "₼69.99",
+    price: "$69.99",
     description: "Supports cellular health and aging",
   },
   {
     id: "performance-1",
     name: "Performance Peptide",
     dosage: "10mg",
-    price: "₼64.99",
+    price: "$64.99",
     description: "Enhances physical performance and endurance",
   },
 ]
@@ -61,7 +61,7 @@ const productCatalog: Record<string, Product> = {
     id: "retatrutide-20mg",
     name: "Retatrutide",
     dosage: "20 mg",
-    price: 400,
+    price: 210.99,
     image: "/retatrutide.png",
     shortDescription:
       "A triple-agonist peptide targeting GLP-1, GIP, and glucagon receptors for comprehensive metabolic support. It is studied for its potential to improve appetite regulation, increase energy expenditure, and support healthy blood glucose control.",
@@ -101,7 +101,7 @@ const productCatalog: Record<string, Product> = {
     id: "bpc-157-10mg",
     name: "BPC-157",
     dosage: "10 mg",
-    price: 100,
+    price: 59.99,
     image: "/bpc-157.png",
     shortDescription:
       "Body Protection Compound-157, a pentadecapeptide derived from human gastric juice with tissue-protective properties. It is also researched for soft-tissue healing, tendon and ligament support, gut-health pathways, and angiogenesis-related recovery signaling.",
@@ -141,7 +141,7 @@ const productCatalog: Record<string, Product> = {
     id: "tb-500-10mg",
     name: "TB-500",
     dosage: "10 mg",
-    price: 170,
+    price: 99.99,
     image: "/tb-500.png",
     shortDescription:
       "Thymosin Beta-4 fragment, a naturally occurring peptide involved in tissue repair and cell migration. It is studied to support injury recovery, inflammation control, angiogenesis, and muscle, tendon, and ligament repair pathways.",
@@ -181,7 +181,7 @@ const productCatalog: Record<string, Product> = {
     id: "wolverine-10mg",
     name: "Wolverine",
     dosage: "20 mg",
-    price: 250,
+    price: 149.99,
     image: "/wolverine.png",
     shortDescription:
       "A synergistic blend of BPC-157 (5mg) and TB-500 (5mg) for comprehensive recovery support. This stack is researched for faster injury recovery, tissue repair, inflammation reduction, and both local and systemic healing responses.",
@@ -221,7 +221,7 @@ const productCatalog: Record<string, Product> = {
     id: "mots-c-10mg",
     name: "MOTS-c",
     dosage: "30 mg",
-    price: 250,
+    price: 149.99,
     image: "/motsc.png",
     shortDescription:
       "A mitochondrial-derived peptide studied for metabolic regulation, cellular energy signaling, and resilience. MOTS-c is a 16-amino-acid mitochondrial peptide explored for fat-burning support, insulin sensitivity, oxidative-stress resistance, bone-metabolism signaling, and exercise-mimicking metabolic flexibility.",
@@ -266,7 +266,7 @@ const productCatalog: Record<string, Product> = {
     id: "glow-10mg",
     name: "GLOW",
     dosage: "70 mg",
-    price: 300,
+    price: 179.99,
     image: "/GLOW.png",
     shortDescription:
       "A multi-pathway peptide blend researched for skin quality, cellular renewal, and cosmetic wellness support. GLOW combines GHK-Cu, BPC-157, and TB-500 in research protocols focused on collagen support, tissue repair, and skin appearance.",
@@ -311,7 +311,7 @@ const productCatalog: Record<string, Product> = {
     id: "epithalon-10mg",
     name: "Epithalon",
     dosage: "50 mg",
-    price: 280,
+    price: 169.99,
     image: "/epithalon.png",
     shortDescription:
       "A synthetic tetrapeptide studied for cellular regulation, longevity pathways, and recovery-focused research protocols. Epithalon is also investigated for telomerase expression, melatonin regulation, immune support, and stress-resilience signaling.",
@@ -401,7 +401,7 @@ const productCatalog: Record<string, Product> = {
     id: "ss-31-10mg",
     name: "SS-31",
     dosage: "10 mg",
-    price: 150,
+    price: 89.99,
     image: "/ss-31.png",
     shortDescription:
       "A mitochondria-targeted peptide researched for cellular energy performance, oxidative-stress signaling, and recovery support. SS-31 (Elamipretide) is explored as a mitochondrial antioxidant linked to ATP-support and oxidative-stress reduction pathways.",
@@ -491,7 +491,7 @@ const productCatalog: Record<string, Product> = {
     id: "nad-plus-10mg",
     name: "NAD+",
     dosage: "1000 mg",
-    price: 300,
+    price: 179.99,
     image: "/nad-plus.png",
     shortDescription:
       "A central metabolic coenzyme studied for cellular energy turnover, redox balance, and healthy-aging pathways. NAD+ is essential in cellular ATP production, DNA-repair systems, and mitochondrial function, and is researched for age-related metabolic decline and chronic-inflammation resilience.",
@@ -536,7 +536,7 @@ const productCatalog: Record<string, Product> = {
     id: "melanotan-2-10mg",
     name: "Melanotan 2",
     dosage: "10 mg",
-    price: 100,
+    price: 59.99,
     image: "/melanotan-2.png",
     shortDescription:
       "A melanocortin-pathway peptide researched for receptor signaling, pigmentation studies, and cellular response analysis. Melanotan 2 is often researched for melanin-production pathways associated with tanning response.",
@@ -581,7 +581,7 @@ const productCatalog: Record<string, Product> = {
     id: "ghk-cu-10mg",
     name: "GHK-CU",
     dosage: "50 mg",
-    price: 100,
+    price: 59.99,
     image: "/ghk-cu.png",
     shortDescription:
       "A copper-peptide complex studied for tissue signaling, skin-related pathways, and cellular renewal support. GHK-Cu is a naturally occurring copper tripeptide explored for collagen support, skin appearance, antioxidant signaling, anti-inflammatory effects, and hair-follicle research.",
@@ -626,7 +626,7 @@ const productCatalog: Record<string, Product> = {
     id: "bacteriostatic-water",
     name: "Bacteriostatic Water",
     dosage: "3 ml / 10 ml",
-    price: 10,
+    price: 5.99,
     image: "/bacteriostatic-water.png",
     shortDescription:
       "Sterile bacteriostatic water for peptide reconstitution in controlled research protocols.",

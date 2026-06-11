@@ -6,7 +6,7 @@ import Link from "next/link"
 import { Footer } from "@/components/footer"
 import { ProductImagePlaceholder, productHasCatalogImage } from "@/components/product-image-placeholder"
 import { ProductPurchasePanel } from "@/components/product-purchase-panel"
-import { formatAzn } from "@/lib/currency"
+import { formatUsd } from "@/lib/currency"
 import { LOCALE_COOKIE_NAME, normalizeLocale } from "@/lib/locale"
 import { getAllProducts, getProduct, getRelatedProducts } from "@/lib/products"
 
@@ -193,7 +193,7 @@ export default async function ProductPage({
                         {relatedProduct.dosage}
                       </p>
                       <p className="mt-auto font-bold text-foreground">
-                        {formatAzn(relatedProduct.price)}
+                        {formatUsd(relatedProduct.price)}
                       </p>
                     </div>
                   </Link>

@@ -7,7 +7,7 @@ import { useLanguage } from "@/components/language-provider"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import type { Product } from "@/lib/products"
-import { formatAzn } from "@/lib/currency"
+import { formatUsd } from "@/lib/currency"
 import { getLocalizedPeptideShortDescription } from "@/lib/product-translations"
 
 interface ProductPurchasePanelProps {
@@ -15,13 +15,11 @@ interface ProductPurchasePanelProps {
 }
 
 const retatrutideOptions = [
-  { dosage: "10 mg", price: 240 },
-  { dosage: "20 mg", price: 400 },
-  { dosage: "30 mg", price: 550 },
+  { dosage: "20 mg", price: 210.99 },
 ]
 
 const bacteriostaticWaterOptions = [
-  { dosage: "3 ml", price: 10 },
+  { dosage: "3 ml", price: 5.99 },
   { dosage: "10 ml", price: 25 },
 ]
 
@@ -85,7 +83,7 @@ export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
                       : "border-border bg-background text-foreground hover:border-primary/40"
                   }`}
                 >
-                  {option.dosage} - {formatAzn(option.price)}
+                  {option.dosage} - {formatUsd(option.price)}
                 </button>
               )
             })}
@@ -110,7 +108,7 @@ export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
                       : "border-border bg-background text-foreground hover:border-primary/40"
                   }`}
                 >
-                  {option.dosage} - {formatAzn(option.price)}
+                  {option.dosage} - {formatUsd(option.price)}
                 </button>
               )
             })}
@@ -126,7 +124,7 @@ export function ProductPurchasePanel({ product }: ProductPurchasePanelProps) {
         ))}
       </div>
 
-      <div className="mt-6 text-3xl font-bold text-foreground">{formatAzn(displayPrice)}</div>
+      <div className="mt-6 text-3xl font-bold text-foreground">{formatUsd(displayPrice)}</div>
 
       <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center">
         <div className="flex items-center rounded-lg border border-border">

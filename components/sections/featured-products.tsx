@@ -7,14 +7,14 @@ import { buttonVariants } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { useLanguage } from "@/components/language-provider"
 import { FlaskConical } from "lucide-react"
-import { formatAzn } from "@/lib/currency"
+import { formatUsd } from "@/lib/currency"
 
 const products = [
   {
     id: "retatrutide-20mg",
     name: "Retatrutide",
-    dosage: "10 mg / 20 mg / 30 mg",
-    price: 400,
+    dosage: "20 mg",
+    price: 210.99,
     image: "/retatrutide.png",
     benefits: ["GLP-1 / GIP / Glucagon", "Fat Loss", "Appetite Control"],
   },
@@ -22,7 +22,7 @@ const products = [
     id: "mots-c-10mg",
     name: "MOTS-c",
     dosage: "30 mg",
-    price: 250,
+    price: 149.99,
     image: "/motsc.png",
     benefits: ["Mitochondrial Support", "Metabolic Health", "Endurance"],
   },
@@ -30,7 +30,7 @@ const products = [
     id: "glow-10mg",
     name: "GLOW",
     dosage: "70 mg",
-    price: 300,
+    price: 179.99,
     image: "/GLOW.png",
     benefits: ["Skin Support", "Cellular Renewal", "Radiance"],
   },
@@ -38,7 +38,7 @@ const products = [
     id: "epithalon-10mg",
     name: "Epithalon",
     dosage: "50 mg",
-    price: 280,
+    price: 169.99,
     image: "/epithalon.png",
     benefits: ["Longevity Research", "Cellular Support", "Recovery"],
   },
@@ -54,7 +54,7 @@ const products = [
     id: "wolverine-10mg",
     name: "Wolverine",
     dosage: "20 mg",
-    price: 250,
+    price: 149.99,
     image: "/wolverine.png",
     benefits: ["Tissue Repair", "Recovery", "Healing"],
   },
@@ -62,7 +62,7 @@ const products = [
     id: "ss-31-10mg",
     name: "SS-31",
     dosage: "10 mg",
-    price: 150,
+    price: 89.99,
     image: "/ss-31.png",
     benefits: ["Mitochondrial Support", "Cellular Energy", "Recovery"],
   },
@@ -78,7 +78,7 @@ const products = [
     id: "nad-plus-10mg",
     name: "NAD+",
     dosage: "1000 mg",
-    price: 300,
+    price: 179.99,
     image: "/nad-plus.png",
     benefits: ["Cellular Energy", "Longevity Research", "Metabolic Support"],
   },
@@ -86,7 +86,7 @@ const products = [
     id: "melanotan-2-10mg",
     name: "Melanotan 2",
     dosage: "10 mg",
-    price: 100,
+    price: 59.99,
     image: "/melanotan-2.png",
     benefits: ["Peptide Research", "Skin Pathways", "Cellular Study"],
   },
@@ -94,7 +94,7 @@ const products = [
     id: "ghk-cu-10mg",
     name: "GHK-CU",
     dosage: "50 mg",
-    price: 100,
+    price: 59.99,
     image: "/ghk-cu.png",
     benefits: ["Skin Research", "Cellular Renewal", "Tissue Support"],
   },
@@ -197,7 +197,7 @@ export function FeaturedProductsSection() {
                     href={`/product/${product.id}`}
                     className="text-2xl font-bold tabular-nums leading-none text-foreground transition-colors hover:text-[#14B8A6] sm:text-xl lg:text-2xl"
                   >
-                    {formatAzn(product.price)}
+                    {formatUsd(product.price)}
                   </Link>
                   <Button
                     asChild
