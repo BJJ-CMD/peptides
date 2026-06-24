@@ -6,29 +6,33 @@ import { FeaturedProductsSection } from "@/components/sections/featured-products
 import { FinalCTASection } from "@/components/sections/final-cta"
 import { HeroSection } from "@/components/sections/hero"
 import { TrustSection } from "@/components/sections/trust"
+import { SITE_URL } from "@/lib/site-url"
 
 export const metadata: Metadata = {
   title: "Pure Amino Peptides",
   description: "Clinical-grade research peptides with 99%+ purity.",
   robots: { index: true, follow: true },
+  alternates: {
+    canonical: SITE_URL,
+  },
   openGraph: {
     title: "Pure Amino Peptides",
     description: "Clinical-grade research peptides with 99%+ purity.",
     images: [
       {
-        url: "https://pure-amino-peptides.com/og-image.png",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
       },
     ],
-    url: "https://pure-amino-peptides.com",
+    url: SITE_URL,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Pure Amino Peptides",
     description: "Clinical-grade research peptides with 99%+ purity.",
-    images: ["https://pure-amino-peptides.com/og-image.png"],
+    images: ["/og-image.png"],
   },
 }
 

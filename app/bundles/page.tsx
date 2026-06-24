@@ -3,11 +3,15 @@ import { cookies } from "next/headers"
 import { BundlesNotifyBlock } from "@/components/bundles-notify-block"
 import { Footer } from "@/components/footer"
 import { LOCALE_COOKIE_NAME, normalizeLocale } from "@/lib/locale"
+import { SITE_URL } from "@/lib/site-url"
 import { Package } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Bundles",
   description: "Peptide bundles at Pure Amino Peptides — coming soon.",
+  alternates: {
+    canonical: `${SITE_URL}/bundles`,
+  },
 }
 
 export default async function BundlesPage() {

@@ -4,11 +4,15 @@ import Link from "next/link"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { LOCALE_COOKIE_NAME, normalizeLocale } from "@/lib/locale"
+import { SITE_URL } from "@/lib/site-url"
 import { FileSearch } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Lab Reports",
   description: "How to request lab report information from Pure Amino Peptides.",
+  alternates: {
+    canonical: `${SITE_URL}/lab-reports`,
+  },
 }
 
 export default async function LabReportsPage() {
