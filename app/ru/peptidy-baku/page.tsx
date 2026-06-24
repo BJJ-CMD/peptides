@@ -29,5 +29,5 @@ export const metadata: Metadata = {
 }
 
 export default function PeptidyBakuPage() {
-  return <SeoRegionalLanding content={peptidyBakuContent} />
+  return <SeoRegionalLanding content={peptidyBakuContent} locale="ru" />
 }

@@ -8,6 +8,7 @@ import { Header } from '@/components/header'
 import { LanguageProvider } from "@/components/language-provider"
 import { LOCALE_COOKIE_NAME, normalizeLocale } from "@/lib/locale"
 import { SITE_URL } from "@/lib/site-url"
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL, organizationJsonLd } from "@/lib/social-links"
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
@@ -61,6 +62,10 @@ export default async function RootLayout({
   return (
     <html lang={locale} className="bg-background">
       <body className="min-h-screen bg-background font-sans antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <LanguageProvider initialLocale={locale}>
           <ConsentGate>
             <CartRequestProvider>
