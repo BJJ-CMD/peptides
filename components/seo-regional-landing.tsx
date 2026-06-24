@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Footer } from "@/components/footer"
+import { RegionalSeoLinksSection } from "@/components/regional-seo-links"
 import { Button } from "@/components/ui/button"
 
 export type SeoRegionalLandingContent = {
@@ -14,7 +15,13 @@ export type SeoRegionalLandingContent = {
   ctaLabel: string
 }
 
-export function SeoRegionalLanding({ content }: { content: SeoRegionalLandingContent }) {
+export function SeoRegionalLanding({
+  content,
+  locale,
+}: {
+  content: SeoRegionalLandingContent
+  locale: "en" | "ru"
+}) {
   return (
     <div className="flex min-h-screen flex-col bg-[#FAFAFA]">
       <main className="flex-1">
@@ -73,6 +80,8 @@ export function SeoRegionalLanding({ content }: { content: SeoRegionalLandingCon
               <Link href="/products">{content.ctaLabel}</Link>
             </Button>
           </div>
+
+          <RegionalSeoLinksSection locale={locale} />
         </section>
       </main>
       <Footer />

@@ -5,6 +5,8 @@ import { BrandLogo } from "@/components/brand-logo"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "@/components/language-provider"
+import { INSTAGRAM_URL, REGIONAL_SEO_LINKS } from "@/lib/social-links"
+import { Instagram } from "lucide-react"
 
 const footerLinks = {
   shop: [
@@ -45,6 +47,8 @@ export function Footer() {
         refundPolicy: "Политика возврата",
         faq: "FAQ",
         labReports: "Лаб-отчеты",
+        regional: "Регионы",
+        instagram: "Подписаться в Instagram",
         rights: "Все права защищены.",
         researchOnly: "Только для исследований в контролируемых условиях.",
       }
@@ -67,6 +71,8 @@ export function Footer() {
         refundPolicy: "Refund Policy",
         faq: "FAQ",
         labReports: "Lab Reports",
+        regional: "Regional",
+        instagram: "Follow us on Instagram",
         rights: "All rights reserved.",
         researchOnly: "For research use in controlled settings.",
       }
@@ -75,13 +81,22 @@ export function Footer() {
     <footer className="border-t border-border bg-secondary">
       <AccountPromoSection />
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-        <div className="grid gap-8 lg:grid-cols-5">
+        <div className="grid gap-8 lg:grid-cols-6">
           {/* Brand & Newsletter */}
           <div className="lg:col-span-2">
             <BrandLogo variant="footer" />
             <p className="mt-4 max-w-sm text-sm text-muted-foreground">
               {t.description}
             </p>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:text-primary/80"
+            >
+              <Instagram className="h-4 w-4" aria-hidden />
+              {t.instagram}
+            </a>
             <div className="mt-6">
               <p className="text-sm font-medium text-foreground">{t.stayUpdated}</p>
               <p className="mt-1 text-sm text-muted-foreground">
@@ -155,6 +170,26 @@ export function Footer() {
                     className="block w-full cursor-pointer text-left text-sm text-muted-foreground transition-colors hover:text-primary"
                   >
                     {t[link.key as keyof typeof t]}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-sm font-semibold text-foreground">{t.regional}</h3>
+            <ul className="mt-4 space-y-3">
+              {REGIONAL_SEO_LINKS.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      window.location.assign(link.href)
+                    }}
+                    className="block w-full cursor-pointer text-left text-sm text-muted-foreground transition-colors hover:text-primary"
+                  >
+                    {locale === "ru" ? link.labelRu : link.labelEn}
                   </a>
                 </li>
               ))}

@@ -5,6 +5,7 @@ import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { LOCALE_COOKIE_NAME, normalizeLocale } from "@/lib/locale"
 import { SITE_URL } from "@/lib/site-url"
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/social-links"
 import { Instagram, Phone, Send } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -38,11 +39,12 @@ export default async function ContactPage() {
     },
     {
       title: "Instagram",
-      description: isRu ? "Скоро" : "Coming soon",
-      placeholder: isRu ? "Скоро" : "Coming soon",
-      buttonLabel: isRu ? "Скоро" : "Coming soon",
+      description: isRu ? "Обновления каталога и контактная информация" : "Catalog updates and contact information",
+      placeholder: INSTAGRAM_HANDLE,
+      buttonLabel: isRu ? "Подписаться в Instagram" : "Follow us on Instagram",
+      href: INSTAGRAM_URL,
       icon: Instagram,
-      available: false,
+      available: true,
     },
   ] as const
 
