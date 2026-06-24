@@ -2,10 +2,14 @@ import type { Metadata } from "next"
 import { cookies } from "next/headers"
 import { Footer } from "@/components/footer"
 import { LOCALE_COOKIE_NAME, normalizeLocale } from "@/lib/locale"
+import { SITE_URL } from "@/lib/site-url"
 
 export const metadata: Metadata = {
   title: "About Us",
   description: "Learn about Pure Aminos — precision, consistency, and a refined approach to peptide sourcing.",
+  alternates: {
+    canonical: `${SITE_URL}/about`,
+  },
 }
 
 export default async function AboutPage() {

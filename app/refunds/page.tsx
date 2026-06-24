@@ -2,11 +2,15 @@ import type { Metadata } from "next"
 import { cookies } from "next/headers"
 import { Footer } from "@/components/footer"
 import { LOCALE_COOKIE_NAME, normalizeLocale } from "@/lib/locale"
+import { SITE_URL } from "@/lib/site-url"
 import { FileText } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Refund Policy",
   description: "Refund and return policy for Pure Amino Peptides.",
+  alternates: {
+    canonical: `${SITE_URL}/refunds`,
+  },
 }
 
 export default async function RefundsPage() {

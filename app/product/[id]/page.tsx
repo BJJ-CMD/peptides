@@ -9,6 +9,7 @@ import { ProductPurchasePanel } from "@/components/product-purchase-panel"
 import { formatUsd } from "@/lib/currency"
 import { LOCALE_COOKIE_NAME, normalizeLocale } from "@/lib/locale"
 import { getAllProducts, getProduct, getRelatedProducts } from "@/lib/products"
+import { SITE_URL } from "@/lib/site-url"
 
 export function generateStaticParams() {
   return getAllProducts().map((product) => ({ id: product.id }))
@@ -26,24 +27,27 @@ export async function generateMetadata({
       title: "Research Peptide | Pure Amino Peptides",
       description: "Explore laboratory-grade peptide details and request high-purity compounds for research workflows.",
       robots: { index: true, follow: true },
+      alternates: {
+        canonical: `${SITE_URL}/products`,
+      },
       openGraph: {
         title: "Research Peptide | Pure Amino Peptides",
         description: "Explore laboratory-grade peptide details and request high-purity compounds for research workflows.",
         images: [
           {
-            url: "https://pure-amino-peptides.com/og-image.png",
+            url: "/og-image.png",
             width: 1200,
             height: 630,
           },
         ],
-        url: "https://pure-amino-peptides.com/products",
+        url: `${SITE_URL}/products`,
         type: "website",
       },
       twitter: {
         card: "summary_large_image",
         title: "Pure Amino Peptides",
         description: "High-purity laboratory-grade peptides.",
-        images: ["https://pure-amino-peptides.com/og-image.png"],
+        images: ["/og-image.png"],
       },
     }
   }
@@ -55,24 +59,27 @@ export async function generateMetadata({
     title,
     description,
     robots: { index: true, follow: true },
+    alternates: {
+      canonical: `${SITE_URL}/product/${product.id}`,
+    },
     openGraph: {
       title,
       description,
       images: [
         {
-          url: "https://pure-amino-peptides.com/og-image.png",
+          url: "/og-image.png",
           width: 1200,
           height: 630,
         },
       ],
-      url: `https://pure-amino-peptides.com/product/${product.id}`,
+      url: `${SITE_URL}/product/${product.id}`,
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
       title: "Pure Amino Peptides",
       description: "High-purity laboratory-grade peptides.",
-      images: ["https://pure-amino-peptides.com/og-image.png"],
+      images: ["/og-image.png"],
     },
   }
 }

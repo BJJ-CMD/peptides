@@ -4,11 +4,15 @@ import Link from "next/link"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { LOCALE_COOKIE_NAME, normalizeLocale } from "@/lib/locale"
+import { SITE_URL } from "@/lib/site-url"
 import { Instagram, Phone, Send } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Contact Us",
   description: "Reach Pure Amino Peptides via WhatsApp.",
+  alternates: {
+    canonical: `${SITE_URL}/contact`,
+  },
 }
 
 export default async function ContactPage() {

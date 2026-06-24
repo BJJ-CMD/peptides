@@ -3,12 +3,16 @@ import { cookies } from "next/headers"
 import { Footer } from "@/components/footer"
 import { FaqAccordion } from "@/components/faq/faq-accordion"
 import { LOCALE_COOKIE_NAME, normalizeLocale } from "@/lib/locale"
+import { SITE_URL } from "@/lib/site-url"
 import { CircleHelp } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Frequently Asked Questions",
   description:
     "Answers about ordering, shipping, contact options, and how we approach quality at Pure Amino Peptides.",
+  alternates: {
+    canonical: `${SITE_URL}/faq`,
+  },
 }
 
 export default async function FaqPage() {

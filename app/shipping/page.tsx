@@ -2,11 +2,15 @@ import type { Metadata } from "next"
 import { cookies } from "next/headers"
 import { Footer } from "@/components/footer"
 import { LOCALE_COOKIE_NAME, normalizeLocale } from "@/lib/locale"
+import { SITE_URL } from "@/lib/site-url"
 import { Truck } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Shipping Information",
   description: "Delivery timelines and shipping details for Pure Amino Peptides.",
+  alternates: {
+    canonical: `${SITE_URL}/shipping`,
+  },
 }
 
 export default async function ShippingPage() {

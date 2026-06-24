@@ -7,13 +7,14 @@ import { ConsentGate } from '@/components/consent-gate'
 import { Header } from '@/components/header'
 import { LanguageProvider } from "@/components/language-provider"
 import { LOCALE_COOKIE_NAME, normalizeLocale } from "@/lib/locale"
+import { SITE_URL } from "@/lib/site-url"
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://pure-amino-peptides.com'),
+  metadataBase: new URL(SITE_URL),
   title: 'Pure Amino Peptides',
   description: 'Clinical-grade research peptides with 99%+ purity.',
   icons: {
@@ -26,11 +27,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Pure Amino Peptides',
     description: 'Clinical-grade research peptides with 99%+ purity.',
-    url: 'https://pure-amino-peptides.com',
+    url: SITE_URL,
     siteName: 'Pure Amino Peptides',
     images: [
       {
-        url: 'https://pure-amino-peptides.com/og-image.png',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
       },
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Pure Amino Peptides',
     description: 'High-purity laboratory-grade peptides.',
-    images: ['https://pure-amino-peptides.com/og-image.png'],
+    images: ['/og-image.png'],
   },
 }
 

@@ -72,7 +72,7 @@ function DisclaimerContent({
           <section>
             <h3 className="mb-2 font-semibold text-foreground">Disclaimer</h3>
             <p>
-              This Disclaimer applies to the use of https://pure-amino-peptides.com/ (&ldquo;Website&rdquo;), any products purchased from Pure Aminos (&ldquo;Company&rdquo;, &ldquo;We&rdquo;, &ldquo;Us&rdquo;, &ldquo;Our&rdquo;), and any information provided on or through the Website.
+              This Disclaimer applies to the use of https://www.pure-amino-peptides.com/ (&ldquo;Website&rdquo;), any products purchased from Pure Aminos (&ldquo;Company&rdquo;, &ldquo;We&rdquo;, &ldquo;Us&rdquo;, &ldquo;Our&rdquo;), and any information provided on or through the Website.
             </p>
             <p className="mt-2">
               By accessing or using the Website, You (&ldquo;User&rdquo;) acknowledge and agree to the terms outlined in this Disclaimer.
@@ -95,7 +95,7 @@ function DisclaimerContent({
 
           <section>
             <h4 className="mb-1 font-semibold text-foreground">2. No Medical Advice or Health Claims</h4>
-            <p>Information on https://pure-amino-peptides.com/ is provided for educational and informational purposes only.</p>
+            <p>Information on https://www.pure-amino-peptides.com/ is provided for educational and informational purposes only.</p>
             <p className="mt-2">Nothing on the Website should be interpreted as:</p>
             <ul className="mt-1 list-disc space-y-1 pl-5">
               <li>Medical advice</li>

@@ -3,29 +3,33 @@ import { Suspense } from "react"
 import { Footer } from "@/components/footer"
 import { ShopPeptidesView } from "@/components/shop/shop-peptides-view"
 import { getShopPeptideListings } from "@/lib/shop-filters"
+import { SITE_URL } from "@/lib/site-url"
 
 export const metadata: Metadata = {
   title: "Shop Research Peptides | Pure Amino Peptides",
   description: "Browse laboratory-grade peptides by category and discover high-purity compounds for research workflows.",
   robots: { index: true, follow: true },
+  alternates: {
+    canonical: `${SITE_URL}/products`,
+  },
   openGraph: {
     title: "Shop Research Peptides | Pure Amino Peptides",
     description: "Browse laboratory-grade peptides by category and discover high-purity compounds for research workflows.",
     images: [
       {
-        url: "https://pure-amino-peptides.com/og-image.png",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
       },
     ],
-    url: "https://pure-amino-peptides.com/products",
+    url: `${SITE_URL}/products`,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Pure Amino Peptides",
     description: "High-purity laboratory-grade peptides.",
-    images: ["https://pure-amino-peptides.com/og-image.png"],
+    images: ["/og-image.png"],
   },
 }
 
