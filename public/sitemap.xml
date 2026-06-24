@@ -9,8 +9,20 @@
     <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://www.pure-amino-peptides.com/coming-soon</loc>
-    <priority>0.80</priority>
+    <loc>https://www.pure-amino-peptides.com/peptides-azerbaijan</loc>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.pure-amino-peptides.com/peptides-baku</loc>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.pure-amino-peptides.com/ru/peptidy-azerbaijan</loc>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.pure-amino-peptides.com/ru/peptidy-baku</loc>
+    <priority>0.75</priority>
   </url>
   <url>
     <loc>https://www.pure-amino-peptides.com/about</loc>
