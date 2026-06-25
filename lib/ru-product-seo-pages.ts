@@ -6,26 +6,28 @@ export type RuProductSeoPageConfig = {
   productId: string
   /** Display name for titles and H1 */
   productLabel: string
+  englishSlug: string
   /** Optional phrasing after «о» in body copy, e.g. «бактериостатической воде» */
   productAbout?: string
 }
 
 export const RU_PRODUCT_SEO_PAGES: Record<string, RuProductSeoPageConfig> = {
-  "retatrutide-baku": { slug: "retatrutide-baku", productId: "retatrutide-20mg", productLabel: "Retatrutide" },
-  "bpc-157-baku": { slug: "bpc-157-baku", productId: "bpc-157-10mg", productLabel: "BPC-157" },
-  "tb-500-baku": { slug: "tb-500-baku", productId: "tb-500-10mg", productLabel: "TB-500" },
-  "wolverine-baku": { slug: "wolverine-baku", productId: "wolverine-10mg", productLabel: "Wolverine" },
-  "mots-c-baku": { slug: "mots-c-baku", productId: "mots-c-10mg", productLabel: "MOTS-c" },
-  "glow-peptid-baku": { slug: "glow-peptid-baku", productId: "glow-10mg", productLabel: "Glow пептид" },
-  "epithalon-baku": { slug: "epithalon-baku", productId: "epithalon-10mg", productLabel: "Epithalon" },
-  "tesamorelin-baku": { slug: "tesamorelin-baku", productId: "tesamorelin-10mg", productLabel: "Tesamorelin" },
-  "ss-31-baku": { slug: "ss-31-baku", productId: "ss-31-10mg", productLabel: "SS-31" },
-  "thymosin-alpha-baku": { slug: "thymosin-alpha-baku", productId: "thymosin-alpha-10mg", productLabel: "Thymosin-Alpha" },
-  "nad-plus-baku": { slug: "nad-plus-baku", productId: "nad-plus-10mg", productLabel: "NAD+" },
-  "melanotan-2-baku": { slug: "melanotan-2-baku", productId: "melanotan-2-10mg", productLabel: "Melanotan 2" },
-  "ghk-cu-baku": { slug: "ghk-cu-baku", productId: "ghk-cu-10mg", productLabel: "GHK-CU" },
+  "retatrutide-baku": { slug: "retatrutide-baku", englishSlug: "retatrutide-baku", productId: "retatrutide-20mg", productLabel: "Retatrutide" },
+  "bpc-157-baku": { slug: "bpc-157-baku", englishSlug: "bpc-157-baku", productId: "bpc-157-10mg", productLabel: "BPC-157" },
+  "tb-500-baku": { slug: "tb-500-baku", englishSlug: "tb-500-baku", productId: "tb-500-10mg", productLabel: "TB-500" },
+  "wolverine-baku": { slug: "wolverine-baku", englishSlug: "wolverine-baku", productId: "wolverine-10mg", productLabel: "Wolverine" },
+  "mots-c-baku": { slug: "mots-c-baku", englishSlug: "mots-c-baku", productId: "mots-c-10mg", productLabel: "MOTS-c" },
+  "glow-peptid-baku": { slug: "glow-peptid-baku", englishSlug: "glow-peptide-baku", productId: "glow-10mg", productLabel: "Glow пептид" },
+  "epithalon-baku": { slug: "epithalon-baku", englishSlug: "epithalon-baku", productId: "epithalon-10mg", productLabel: "Epithalon" },
+  "tesamorelin-baku": { slug: "tesamorelin-baku", englishSlug: "tesamorelin-baku", productId: "tesamorelin-10mg", productLabel: "Tesamorelin" },
+  "ss-31-baku": { slug: "ss-31-baku", englishSlug: "ss-31-baku", productId: "ss-31-10mg", productLabel: "SS-31" },
+  "thymosin-alpha-baku": { slug: "thymosin-alpha-baku", englishSlug: "thymosin-alpha-baku", productId: "thymosin-alpha-10mg", productLabel: "Thymosin Alpha" },
+  "nad-plus-baku": { slug: "nad-plus-baku", englishSlug: "nad-plus-baku", productId: "nad-plus-10mg", productLabel: "NAD+" },
+  "melanotan-2-baku": { slug: "melanotan-2-baku", englishSlug: "melanotan-2-baku", productId: "melanotan-2-10mg", productLabel: "Melanotan 2" },
+  "ghk-cu-baku": { slug: "ghk-cu-baku", englishSlug: "ghk-cu-baku", productId: "ghk-cu-10mg", productLabel: "GHK-Cu" },
   "bacteriostatic-water-baku": {
     slug: "bacteriostatic-water-baku",
+    englishSlug: "bacteriostatic-water-baku",
     productId: "bacteriostatic-water",
     productLabel: "Бактериостатическая вода",
     productAbout: "бактериостатической воде",
@@ -39,6 +41,7 @@ export type RuProductSeoFaqItem = {
 
 export type RuProductSeoContent = {
   canonicalPath: string
+  englishPath: string
   title: string
   description: string
   h1: string
@@ -63,16 +66,18 @@ export function getRuProductSeoPage(slug: string): RuProductSeoPageConfig | unde
 }
 
 export function buildRuProductSeoContent(config: RuProductSeoPageConfig): RuProductSeoContent {
-  const { productLabel, productId, slug } = config
+  const { productLabel, productId, slug, englishSlug } = config
   const aboutPhrase = config.productAbout ?? productLabel
   const canonicalPath = `/ru/${slug}`
+  const englishPath = `/${englishSlug}`
   const productPageHref = `/product/${productId}`
 
   const titleLabel = productLabel
 
   return {
     canonicalPath,
-    title: `${titleLabel} в Баку | Пептиды в Азербайджане | Pure Amino Peptides`,
+    englishPath,
+    title: `${titleLabel} в Баку | ${titleLabel} Азербайджан | Pure Amino Peptides`,
     description: `${titleLabel} в Баку и Азербайджане. Pure Amino Peptides предоставляет информацию о наличии, COA, лабораторных отчетах и проверке чистоты. Только для исследовательского использования.`,
     h1: `${titleLabel} в Баку`,
     intro: `На этой странице представлена информация о ${aboutPhrase} для клиентов, которые ищут пептиды в Баку и Азербайджане. Pure Amino Peptides предоставляет сведения о наличии, лабораторных отчетах COA и проверке чистоты. Если вы хотите узнать, где заказать информацию о ${aboutPhrase} в Баку, вы можете просмотреть каталог или связаться с нами. Продукты предназначены только для исследовательского использования.`,
@@ -126,12 +131,20 @@ export function buildRuProductSeoContent(config: RuProductSeoPageConfig): RuProd
 export function buildRuProductSeoMetadata(config: RuProductSeoPageConfig): Metadata {
   const content = buildRuProductSeoContent(config)
   const canonical = `${SITE_URL}${content.canonicalPath}`
+  const englishCanonical = `${SITE_URL}${content.englishPath}`
 
   return {
     title: content.title,
     description: content.description,
     robots: { index: true, follow: true },
-    alternates: { canonical },
+    alternates: {
+      canonical,
+      languages: {
+        en: englishCanonical,
+        ru: canonical,
+        "x-default": englishCanonical,
+      },
+    },
     openGraph: {
       title: content.title,
       description: content.description,

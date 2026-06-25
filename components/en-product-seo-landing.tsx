@@ -2,17 +2,15 @@ import Link from "next/link"
 import { Footer } from "@/components/footer"
 import { RegionalSeoLinksSection } from "@/components/regional-seo-links"
 import { Button } from "@/components/ui/button"
-import type { RuProductSeoContent } from "@/lib/ru-product-seo-pages"
+import type { EnProductSeoContent } from "@/lib/en-product-seo-pages"
 
-export function RuProductSeoLanding({ content }: { content: RuProductSeoContent }) {
+export function EnProductSeoLanding({ content }: { content: EnProductSeoContent }) {
   return (
     <div className="flex min-h-screen flex-col bg-[#FAFAFA]">
       <main className="flex-1">
         <section className="border-b border-gray-200/80 bg-white">
           <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:py-20">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#14B8A6]">
-              Баку, Азербайджан
-            </p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#14B8A6]">Baku, Azerbaijan</p>
             <h1 className="mt-3 text-balance text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-[2.5rem] lg:leading-tight">
               {content.h1}
             </h1>
@@ -22,9 +20,7 @@ export function RuProductSeoLanding({ content }: { content: RuProductSeoContent 
 
         <section className="mx-auto max-w-3xl space-y-6 px-4 py-10 sm:px-6 sm:py-14 lg:py-16">
           <div className="rounded-2xl border border-gray-200/80 bg-white p-6 shadow-sm sm:p-8">
-            <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
-              {content.availabilityTitle}
-            </h2>
+            <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">{content.availabilityTitle}</h2>
             <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-slate-600 sm:text-base sm:leading-[1.75]">
               {content.availabilityParagraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
@@ -33,17 +29,17 @@ export function RuProductSeoLanding({ content }: { content: RuProductSeoContent 
             <ul className="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-[15px] font-medium">
               <li>
                 <Link href="/products" className="text-[#14B8A6] underline-offset-4 hover:underline">
-                  Каталог пептидов
+                  Products catalog
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="text-[#14B8A6] underline-offset-4 hover:underline">
-                  Контакты
+                  Contact
                 </Link>
               </li>
               <li>
                 <Link href="/shipping" className="text-[#14B8A6] underline-offset-4 hover:underline">
-                  Доставка
+                  Shipping
                 </Link>
               </li>
             </ul>
@@ -58,9 +54,14 @@ export function RuProductSeoLanding({ content }: { content: RuProductSeoContent 
             </div>
             <p className="mt-5">
               <Link href="/lab-reports" className="text-[15px] font-medium text-[#14B8A6] underline-offset-4 hover:underline">
-                Лабораторные отчеты и COA
+                Lab reports and COA
               </Link>
             </p>
+          </div>
+
+          <div className="rounded-2xl border border-amber-200/80 bg-amber-50/60 p-6 sm:p-8">
+            <h2 className="text-lg font-semibold text-slate-900">{content.researchOnlyTitle}</h2>
+            <p className="mt-3 text-[15px] leading-relaxed text-slate-700 sm:text-base">{content.researchOnlyText}</p>
           </div>
 
           <div className="rounded-2xl border border-gray-200/80 bg-white p-6 shadow-sm sm:p-8">
@@ -75,20 +76,12 @@ export function RuProductSeoLanding({ content }: { content: RuProductSeoContent 
             </dl>
           </div>
 
-          <div className="rounded-2xl border border-amber-200/80 bg-amber-50/60 p-6 sm:p-8">
-            <h2 className="text-lg font-semibold text-slate-900">{content.disclaimerTitle}</h2>
-            <p className="mt-3 text-[15px] leading-relaxed text-slate-700 sm:text-base">{content.disclaimer}</p>
-          </div>
-
           <div className="rounded-2xl border border-gray-200/80 bg-white p-6 shadow-sm sm:p-8">
             <h2 className="text-xl font-semibold tracking-tight text-slate-900">{content.linksTitle}</h2>
             <ul className="mt-4 grid gap-2 sm:grid-cols-2">
               {content.links.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-[15px] font-medium text-[#14B8A6] underline-offset-4 hover:underline"
-                  >
+                  <Link href={link.href} className="text-[15px] font-medium text-[#14B8A6] underline-offset-4 hover:underline">
                     {link.label}
                   </Link>
                 </li>
@@ -101,14 +94,6 @@ export function RuProductSeoLanding({ content }: { content: RuProductSeoContent 
                   {content.productPageLabel}
                 </Link>
               </li>
-              <li>
-                <Link
-                  href={content.englishPath}
-                  className="text-[15px] font-medium text-[#14B8A6] underline-offset-4 hover:underline"
-                >
-                  English version
-                </Link>
-              </li>
             </ul>
             <Button
               asChild
@@ -118,7 +103,7 @@ export function RuProductSeoLanding({ content }: { content: RuProductSeoContent 
             </Button>
           </div>
 
-          <RegionalSeoLinksSection locale="ru" />
+          <RegionalSeoLinksSection locale="en" />
         </section>
       </main>
       <Footer />
