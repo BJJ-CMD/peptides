@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { getProductSeoSnapshot, type ProductSeoProductSnapshot } from "@/lib/product-seo-landing-shared"
 import { SITE_URL } from "@/lib/site-url"
 
 export type RuProductSeoPageConfig = {
@@ -40,24 +41,35 @@ export type RuProductSeoFaqItem = {
 }
 
 export type RuProductSeoContent = {
+  locale: "ru"
   canonicalPath: string
   englishPath: string
   title: string
   description: string
+  overline: string
   h1: string
+  heroAvailability: string
+  researchOnlyShort: string
   intro: string
+  productSnapshot: ProductSeoProductSnapshot | null
+  productPageHref: string
+  productPageLabel: string
+  viewProductLabel: string
+  contactLabel: string
+  contactAvailabilityLabel: string
+  coaLinkLabel: string
   availabilityTitle: string
   availabilityParagraphs: string[]
   coaTitle: string
   coaParagraphs: string[]
+  whyChooseTitle: string
+  whyChooseItems: string[]
+  researchOnlyTitle: string
+  researchOnlyText: string
   faqTitle: string
   faq: RuProductSeoFaqItem[]
-  disclaimerTitle: string
-  disclaimer: string
   linksTitle: string
   links: { href: string; label: string }[]
-  productPageHref: string
-  productPageLabel: string
   ctaLabel: string
 }
 
@@ -75,12 +87,29 @@ export function buildRuProductSeoContent(config: RuProductSeoPageConfig): RuProd
   const titleLabel = productLabel
 
   return {
+    locale: "ru",
     canonicalPath,
     englishPath,
     title: `${titleLabel} в Баку | ${titleLabel} Азербайджан | Pure Amino Peptides`,
     description: `${titleLabel} в Баку и Азербайджане. Pure Amino Peptides предоставляет информацию о наличии, COA, лабораторных отчетах и проверке чистоты. Только для исследовательского использования.`,
-    h1: `${titleLabel} в Баку`,
-    intro: `На этой странице представлена информация о ${aboutPhrase} для клиентов, которые ищут пептиды в Баку и Азербайджане. Pure Amino Peptides предоставляет сведения о наличии, лабораторных отчетах COA и проверке чистоты. Если вы хотите узнать, где заказать информацию о ${aboutPhrase} в Баку, вы можете просмотреть каталог или связаться с нами. Продукты предназначены только для исследовательского использования.`,
+    overline: "Баку, Азербайджан",
+    h1: titleLabel,
+    heroAvailability: "Доступно в Баку и Азербайджане",
+    researchOnlyShort: "Только для исследовательского использования. Не для применения человеком или животными.",
+    intro: `На этой странице представлена информация о ${aboutPhrase} для клиентов, которые ищут пептиды в Баку и Азербайджане. Pure Amino Peptides предоставляет сведения о наличии, лабораторных отчетах COA и проверке чистоты.`,
+    productSnapshot: getProductSeoSnapshot(productId),
+    viewProductLabel: "Посмотреть продукт",
+    contactLabel: "Связаться",
+    contactAvailabilityLabel: "Уточнить наличие",
+    coaLinkLabel: "COA и лабораторные отчеты",
+    whyChooseTitle: "Почему Pure Amino Peptides?",
+    whyChooseItems: [
+      "COA и лабораторные отчеты предоставляются по запросу для исследовательской документации.",
+      "Информация о проверке чистоты для оценки позиций каталога.",
+      "Сведения о наличии в Баку и Азербайджане через каталог и контактную команду.",
+      "Ответы на вопросы через страницу контактов и Instagram.",
+      "Продукция предназначена только для исследовательского использования.",
+    ],
     availabilityTitle: "Наличие и информация о заказе в Баку",
     availabilityParagraphs: [
       `Если вы ищете ${titleLabel} в Баку или по всему Азербайджану, начните с каталога пептидов на сайте Pure Amino Peptides. Там вы найдете актуальную информацию о позиции и сможете отправить запрос через контактную страницу.`,
@@ -111,8 +140,8 @@ export function buildRuProductSeoContent(config: RuProductSeoPageConfig): RuProd
           "Нет. Продукт предназначен только для исследовательского использования и не предназначен для применения человеком или животными.",
       },
     ],
-    disclaimerTitle: "Только для исследовательского использования",
-    disclaimer:
+    researchOnlyTitle: "Только для исследовательского использования",
+    researchOnlyText:
       "Вся продукция предназначена исключительно для лабораторных и научных исследований. Не для использования человеком или животными. Не для бытового, косметического или пищевого применения.",
     linksTitle: "Полезные ссылки",
     links: [
@@ -121,9 +150,10 @@ export function buildRuProductSeoContent(config: RuProductSeoPageConfig): RuProd
       { href: "/faq", label: "Часто задаваемые вопросы" },
       { href: "/shipping", label: "Информация о доставке" },
       { href: "/contact", label: "Связаться с нами" },
+      { href: englishPath, label: "English version" },
     ],
     productPageHref,
-    productPageLabel: `Страница ${titleLabel} в каталоге`,
+    productPageLabel: `Посмотреть страницу ${titleLabel} в каталоге`,
     ctaLabel: "Смотреть каталог",
   }
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { getProductSeoSnapshot, type ProductSeoProductSnapshot } from "@/lib/product-seo-landing-shared"
 import { SITE_URL } from "@/lib/site-url"
 
 export type EnProductSeoPageConfig = {
@@ -111,24 +112,35 @@ export const EN_PRODUCT_SEO_PAGES: Record<string, EnProductSeoPageConfig> = {
 }
 
 export type EnProductSeoContent = {
+  locale: "en"
   canonicalPath: string
   russianPath: string
   title: string
   description: string
+  overline: string
   h1: string
+  heroAvailability: string
+  researchOnlyShort: string
   intro: string
+  productSnapshot: ProductSeoProductSnapshot | null
+  productPageHref: string
+  productPageLabel: string
+  viewProductLabel: string
+  contactLabel: string
+  contactAvailabilityLabel: string
+  coaLinkLabel: string
   availabilityTitle: string
   availabilityParagraphs: string[]
   coaTitle: string
   coaParagraphs: string[]
+  whyChooseTitle: string
+  whyChooseItems: string[]
   researchOnlyTitle: string
   researchOnlyText: string
   faqTitle: string
   faq: { question: string; answer: string }[]
   linksTitle: string
   links: { href: string; label: string }[]
-  productPageHref: string
-  productPageLabel: string
   ctaLabel: string
 }
 
@@ -142,12 +154,29 @@ export function buildEnProductSeoContent(config: EnProductSeoPageConfig): EnProd
   const productPageHref = `/product/${config.productId}`
 
   return {
+    locale: "en",
     canonicalPath,
     russianPath,
     title: `${config.productLabel} in Baku | ${config.azerbaijanLabel} Azerbaijan | Pure Amino Peptides`,
     description: `${config.productLabel} information for Baku and Azerbaijan. View availability, COA, lab reports, and purity verification. Research use only. Not for human or veterinary use.`,
-    h1: `${config.productLabel} in Baku`,
-    intro: `This page provides information for users searching for ${config.productLabel} in Baku and Azerbaijan, including searches like buy ${config.productLabel} Baku. Pure Amino Peptides provides product availability information, COA documentation, lab reports, and purity verification details for peptide research workflows. Products are supplied strictly for research use only.`,
+    overline: "Baku, Azerbaijan",
+    h1: config.productLabel,
+    heroAvailability: "Available in Baku and Azerbaijan",
+    researchOnlyShort: "Research use only. Not for human or veterinary use.",
+    intro: `This page provides information for users searching for ${config.productLabel} in Baku and Azerbaijan. Pure Amino Peptides lists catalog details, COA documentation, lab reports, and purity verification for peptide research workflows.`,
+    productSnapshot: getProductSeoSnapshot(config.productId),
+    viewProductLabel: "View product",
+    contactLabel: "Contact",
+    contactAvailabilityLabel: "Contact for availability",
+    coaLinkLabel: "Lab reports and COA",
+    whyChooseTitle: "Why choose Pure Amino Peptides?",
+    whyChooseItems: [
+      "COA and lab reports available on request for research documentation.",
+      "Purity verification details provided for catalog evaluation.",
+      "Availability information for Baku and Azerbaijan through our catalog and contact team.",
+      "Questions answered via contact page and Instagram.",
+      "Products supplied strictly for research use only.",
+    ],
     availabilityTitle: `${config.productLabel} availability in Baku`,
     availabilityParagraphs: [
       `If you are searching for ${config.productLabel} in Baku or Azerbaijan, you can review the catalog and contact our team for current availability and shipping information.`,
@@ -189,7 +218,7 @@ export function buildEnProductSeoContent(config: EnProductSeoPageConfig): EnProd
       { href: russianPath, label: "Russian version" },
     ],
     productPageHref,
-    productPageLabel: `${config.productLabel} product page`,
+    productPageLabel: `View the ${config.productLabel} product page`,
     ctaLabel: "View catalog",
   }
 }
